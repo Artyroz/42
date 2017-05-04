@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!-- saved from url=(0065)http://perso.epitech.eu/~ol/work/raytracer/cours/cours/rt2-3.html -->
+<html class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>rt2</title>
+<meta name="description" content="rt2">
+<meta name="keywords" content="rt2">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+
+<meta name="Generator" content="LaTeX2HTML v2K.1beta">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="./rt3_files/translateelement.css"></head>
+
+<body bgcolor="white">
+
+<center>
+<h1><font><font>Basic computer graphics - Epitech1</font></font></h1><br><font><font>
+Part Two - Course 3 - Suite
+</font></font></center>
+
+
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>3d projections </font></font><img width="42" height="31" align="BOTTOM" border="0" src="./rt3_files/img1.png" alt="$ \ To $"><font><font>2d</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ It is about transforming points and objects described
+
+ </font></font><br><font><font>
+in space (3D) at points and objects
+
+ </font></font><br><font><font>
+that can be included in a plane (2D) while keeping
+
+ </font></font><br><font><font>
+a visual impression of relief.
+
+	   </font><font>
+	 
+ The projection parallel
+
+	   </font><font>
+	 
+ projection Isometric
+
+	   </font><font>
+	 
+ The conical projection
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font></font></p><p>
+
+	<font size="-2"><font><font>38</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Parallel projection</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ A point </font></font><img width="123" height="62" align="MIDDLE" border="0" src="./rt3_files/img3.png" alt="$ (X, y, z) $"><font><font>in space will be placed </font></font><img width="91" height="62" align="MIDDLE" border="0" src="./rt3_files/img4.png" alt="$ (X, y) $"><font><font>in the plane,
+
+ </font></font><br><font><font>
+and then moved on an axis close to the first diagonal,
+
+ </font></font><br><font><font>
+proportionally to </font></font><img width="25" height="31" align="BOTTOM" border="0" src="./rt3_files/img5.png" alt="$ Z $"><font><font>. </font><font>Then it is </font></font><img width="109" height="62" align="MIDDLE" border="0" src="./rt3_files/img6.png" alt="$ (X, Y) $"><font><font>.
+
+</font></font></p><p>
+  <img width="364" height="264" align="BOTTOM" border="0" src="./rt3_files/img51.png" alt="\ Includegraphics [height = 6cm] {} pparal.eps">
+
+</p><p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ Generally use:
+
+ </font><font>and </font><font>
+with </font><font>constant between </font><font>and </font><font>.
+
+</font></font><br> 
+   <!-- MATH
+ $X = x + cte \times z$
+ -->
+<img width="253" height="62" align="MIDDLE" border="0" src="./rt3_files/img7.png" alt="$ X = x + ct \ times $ z"><font></font><!-- MATH
+ $Y = y + \frac{cte}{2} \times z$
+ -->
+<img width="245" height="70" align="MIDDLE" border="0" src="./rt3_files/img8.png" alt="$ Y = y + \ frac {ct} {2} \ times z $">
+
+<br><font></font><img width="51" height="31" align="BOTTOM" border="0" src="./rt3_files/img9.png" alt="$ $ Coast"><font></font><img width="57" height="31" align="BOTTOM" border="0" src="./rt3_files/img10.png" alt="$ 0.5"><font></font><img width="28" height="30" align="BOTTOM" border="0" src="./rt3_files/img11.png" alt="$ 1"><font></font></p><p>
+
+	<font size="-2"><font><font>39</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Isometric projection</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ This time, the point </font></font><img width="123" height="62" align="MIDDLE" border="0" src="./rt3_files/img3.png" alt="$ (X, y, z) $"><font><font>is placed </font></font><img width="91" height="62" align="MIDDLE" border="0" src="./rt3_files/img12.png" alt="$ (0, z) $"><font><font>on the
+
+ </font></font><br><font><font>
+plane, then moved on two axes close to 2 diagonals, and
+
+ </font></font><br><font><font>
+in proportion to </font></font><img width="27" height="31" align="BOTTOM" border="0" src="./rt3_files/img13.png" alt="$ X $"><font><font>and </font></font><img width="26" height="62" align="MIDDLE" border="0" src="./rt3_files/img14.png" alt="$ Y $"><font><font>.
+
+</font></font></p><p>
+  <img width="190" height="252" align="BOTTOM" border="0" src="./rt3_files/img52.png" alt="\ Includegraphics [height = 6cm] {} piso.eps">
+
+</p><p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ Generally use:
+
+ </font><font>and </font><font>
+with </font><font>and </font><font>constants between </font><font>and </font><font>.
+
+</font></font><br> 
+   <!-- MATH
+ $X = cte1 \times x - cte2 \times y$
+ -->
+<img width="372" height="62" align="MIDDLE" border="0" src="./rt3_files/img15.png" alt="CTE1 $ X = \ times x - CTE2 \ times y $"><font></font><!-- MATH
+ $Y = z + \frac{cte1}{2} \times x + \frac{cte2}{2} \times y$
+ -->
+<img width="424" height="73" align="MIDDLE" border="0" src="./rt3_files/img16.png" alt="$ Y = z + \ frac {CTE1} {2} \ times x + \ frac {CTE2} {2} \ times $ y">
+
+<br><font></font><img width="71" height="31" align="BOTTOM" border="0" src="./rt3_files/img17.png" alt="$ $ CTE1"><font></font><img width="71" height="31" align="BOTTOM" border="0" src="./rt3_files/img18.png" alt="$ $ CTE2"><font></font><img width="57" height="31" align="BOTTOM" border="0" src="./rt3_files/img10.png" alt="$ 0.5"><font></font><img width="28" height="30" align="BOTTOM" border="0" src="./rt3_files/img11.png" alt="$ 1"><font></font></p><p>
+
+	<font size="-2"><font><font>40</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Conic</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ It is a type of projection closer to the reality of
+
+ </font></font><br><font><font>
+our vision. </font><font>More one looks into the distance, the more we can see
+
+ </font></font><br><font><font>
+two very distant objects simultaneously.
+
+</font></font></p><p>
+  <img width="553" height="270" align="BOTTOM" border="0" src="./rt3_files/img53.png" alt="\ Includegraphics [height = 6cm] {} pconik.eps">
+
+</p><p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ No formulas, but it is a projection system that we
+
+ </font></font><br><font><font>
+use to ray casting and RayTracing. </font><font>(The approach
+
+ </font></font><br><font><font>
+will not be the conversion 3d </font></font><img width="42" height="31" align="BOTTOM" border="0" src="./rt3_files/img1.png" alt="$ \ To $"><font><font>2d).
+
+</font></font></p><p>
+
+	<font size="-2"><font><font>41</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Projections of a cube</font></font></font>
+	
+</div>
+
+<p>
+  <img width="1115" height="450" align="BOTTOM" border="0" src="./rt3_files/img54.png" alt="\ Includegraphics [height = 10cm] {} cube.eps">
+
+	<font size="-2"><font><font>42</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Mandelbrot set</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ This is a set of points in the plane having an aspect
+
+ </font></font><br><font><font>
+fractal discovered by French mathematicians Benoit Mandelbrot.
+
+	   </font><font>
+	 
+ We define a function that transforms a point </font><font>of the plan
+
+ </font><font>
+at another point </font><font>of the same plane:
+
+ </font><font>
+The new point </font><font>is in turn transformed by the
+
+ </font><font>
+same function.
+
+	   </font><font>
+	 
+ The starting point </font><font>. </font><font>For a couple </font><font>
+given, if we look at successive transformations
+
+ </font><font>
+we move away from the origin </font><font>.
+
+	   </font><font>
+	 
+ All points of the plan </font><font>for which
+
+ </font><font>
+it is not away from the origin is the Mandelbrot set.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font></font><img width="91" height="62" align="MIDDLE" border="0" src="./rt3_files/img4.png" alt="$ (X, y) $"><font></font><br><font></font><img width="108" height="64" align="MIDDLE" border="0" src="./rt3_files/img19.png" alt="$ (X &#39;, y&#39;) $"><font></font><br> 
+   <!-- MATH
+ $x' = x^{2}-y^{2}+cte_{x}$
+ -->
+<img width="302" height="69" align="MIDDLE" border="0" src="./rt3_files/img20.png" alt="$ X &#39;= x ^ {2} -y ^ {2} + {x} $ cte_">   <!-- MATH
+ $y' = 2xy+cte_{y}$
+ -->
+<img width="244" height="64" align="MIDDLE" border="0" src="./rt3_files/img21.png" alt="$ Y &#39;= 2xy + cte_ {y} $">
+
+<br><font></font><img width="108" height="64" align="MIDDLE" border="0" src="./rt3_files/img19.png" alt="$ (X &#39;, y&#39;) $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font></font><img width="94" height="62" align="MIDDLE" border="0" src="./rt3_files/img22.png" alt="$ (0,0) $"><font></font><!-- MATH
+ $(cte_{x},cte_{y})$
+ -->
+<img width="171" height="62" align="MIDDLE" border="0" src="./rt3_files/img23.png" alt="$ (Cte_ {x} {y} cte_) $">
+
+<br><font></font><br><font></font><img width="94" height="62" align="MIDDLE" border="0" src="./rt3_files/img22.png" alt="$ (0,0) $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font></font><!-- MATH
+ $(cte_{x},cte_{y})$
+ -->
+<img width="171" height="62" align="MIDDLE" border="0" src="./rt3_files/img23.png" alt="$ (Cte_ {x} {y} cte_) $"><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>43</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Mandelbrot - continued</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ For those who remember:
+
+ </font></font><br><font><font>
+The Mandelbrot set is the set of </font></font><img width="51" height="31" align="BOTTOM" border="0" src="./rt3_files/img9.png" alt="$ $ Coast"><font><font>complexes such
+
+ </font></font><br><font><font>
+as complex sequence </font><font>does not diverge.
+
+	   </font><font>
+	 
+ Specifically, the Mandelbrot set is in the area of the
+
+ </font><font>
+plane </font><font>. </font><font>Is carried out a finite number of iterations
+
+ </font><font> 
+ (100 is sufficient), and if we look at the distance from the point obtained
+
+ </font><font>at the center is greater than 5, for example. </font><font>Suffice it
+
+ </font><font>
+to calculate </font><font>.
+
+</font></font><!-- MATH
+ $z_{0}=0 , z_{n+1}=z_{n}^{2}+cte$
+ -->
+<img width="373" height="69" align="MIDDLE" border="0" src="./rt3_files/img24.png" alt="$ Z_ {0} = 0, z_ {n + 1} = z_ {n} ^ {2} + $ coast"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><img width="246" height="62" align="MIDDLE" border="0" src="./rt3_files/img25.png" alt="$ (- 2,2), (- 2,2) $"><font></font><br><font></font><br> 
+ <img width="91" height="62" align="MIDDLE" border="0" src="./rt3_files/img4.png" alt="$ (X, y) $"><font></font><br><font></font><img width="125" height="69" align="MIDDLE" border="0" src="./rt3_files/img26.png" alt="$ X ^ {2} + y ^ {2} $"><font></font></p><p>
+
+	<font size="-2"><font><font>44</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Julia sets</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ Julia sets are based on the same principle.
+
+ </font></font><br><font><font>
+This time, it is not part of the original </font></font><img width="94" height="62" align="MIDDLE" border="0" src="./rt3_files/img22.png" alt="$ (0,0) $"><font><font>but the point
+
+ </font></font><br><font><font>
+being tested as inside and outside of the emsemble.
+
+ </font></font><br><font><font> 
+ ( </font><font>or </font><font>). </font><font>Each transformation
+
+ </font><font>
+is no longer the tested point is added, but
+
+ </font><font>
+arbitrary constant </font><font>or </font><font>.
+
+	   </font><font>
+	 
+ For each pair </font><font>or each constant </font><font>,
+
+ </font><font>
+we have a set of Julia different.
+
+	   </font><font>
+	 
+ In summary:
+
+ </font><font>
+For a constant </font><font>complex, the Julia set partner is
+
+ </font><font>
+all </font><font>complexes such as complex series
+
+ </font><font>does not diverge.
+
+</font></font><!-- MATH
+ $(cte_{x},cte_{y})$
+ -->
+<img width="171" height="62" align="MIDDLE" border="0" src="./rt3_files/img23.png" alt="$ (Cte_ {x} {y} cte_) $"><font></font><img width="133" height="62" align="MIDDLE" border="0" src="./rt3_files/img27.png" alt="$ Z_ {0} = $ ct"><font></font><br><font></font><br><font></font><img width="24" height="62" align="MIDDLE" border="0" src="./rt3_files/img28.png" alt="$ J $"><font></font><img width="113" height="62" align="MIDDLE" border="0" src="./rt3_files/img29.png" alt="$ (J_ {x}, j_ {y}) $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font></font><img width="113" height="62" align="MIDDLE" border="0" src="./rt3_files/img29.png" alt="$ (J_ {x}, j_ {y}) $"><font></font><img width="24" height="62" align="MIDDLE" border="0" src="./rt3_files/img28.png" alt="$ J $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt3_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><img width="24" height="62" align="MIDDLE" border="0" src="./rt3_files/img28.png" alt="$ J $"><font></font><br><font></font><img width="51" height="31" align="BOTTOM" border="0" src="./rt3_files/img9.png" alt="$ $ Coast"><font></font><br> 
+ <!-- MATH
+ $z_{0}=cte , z_{n+1}=z_{n}^{2}+j$
+ -->
+<img width="369" height="69" align="MIDDLE" border="0" src="./rt3_files/img30.png" alt="$ Z_ {0} = const, z_ {n + 1} = z_ {n} ^ {2} $ + j"><font></font></p><p>
+
+	<font size="-2"><font><font>45</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Examples</font></font></font>
+	
+</div>
+
+<p>
+  <img width="671" height="591" align="BOTTOM" border="0" src="./rt3_files/img55.png" alt="\ Includegraphics [] {} Mandelbrot.ps">
+
+</p><p><font><font>
+Mandelbrot
+
+</font></font></p><p>
+<img width="591" height="591" align="BOTTOM" border="0" src="./rt3_files/img56.png" alt="\ Includegraphics [height = 13.1cm] {} julia2.ps">
+
+</p><p><font><font>
+  Julia
+
+</font></font></p><p>
+
+	<font size="-2"><font><font>46</font></font></font>
+
+</p><p>
+
+
+</p><p>
+<br></p><hr><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./rt3_files/translate-32.png" width="20" height="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><font><font>
+
+Ol@epita.fr - tek1 - November 30, 2001 - Converted by latex2html
+
+
+
+</font></font></body></html>

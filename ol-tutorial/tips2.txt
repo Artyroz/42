@@ -1,0 +1,19 @@
+TP2 Sem 26 Nov
+ - creation d'une image, affichage de nb_bits_per_pixel et size_line
+ - couleur noir : 0. Mettre toute l'image en noir
+    => tous les octets de tous les pixels a 0
+     -> calcul de la taille de l'image.
+ - couleur blanc : que des 1 sur tous les bits des pixels.
+    => quelle valeur dans chaque octet ?
+    => mettre les 8 premiers pixels de l'image en blanc :
+     mettre les 8 x nb_bits_pixel bits a 1.
+ - Le meme mais avec les 8 premiers pixels de la 42eme ligne.
+    => calcul de l'adresse du premier octet de chaque ligne
+ - fonction qui met en blanc un pixel (x,y) donne
+ - Pour une couleur RGB, trouver les bits qui codent la couleur dans l'int
+   renvoye par mlx_get_color_value. Combien en utilise-t-on ?
+ - modifier la fonction precedente (celle qui met du blanc) pour mettre
+  la couleur voulue dans le pixel (on appelera cette fonction :
+   my_pixel_put_to_image )
+ - tester votre programme sur une sun et l'affichage sur un PC, et
+  se servir du parametre "endian" pour corriger le bug.

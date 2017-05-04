@@ -1,0 +1,185 @@
+Scene {
+	width 640
+	height 480
+
+	Camera {
+		pos 0.0 0.0 30.0
+		rot 0.0 0.0 0.0
+	}
+
+	Object {
+		type sphere
+		pos 0.0 4.5 45.0
+		radius 1.0
+		color 0 0 255
+	}
+
+	Object {
+		type sphere
+		pos 0.0 3.0 45.0
+		radius 1.0
+		color 0 255 0
+	}
+
+	Object {
+		type sphere
+		pos 0.0 1.5 45.0
+		radius 1.0
+		color 255 0 0
+	}
+
+	Object {
+		type sphere
+		pos 0.5 3.75 45.0
+		radius 1.0
+		color 0 255 255
+	}
+
+	Object {
+		type sphere
+		pos -0.5 2.25 45.0
+		radius 1.0
+		color 255 255 0
+	}
+
+	Object {
+		type sphere
+		pos -0.5 4.5 45.0
+		radius 1.0
+		color 255 0 255
+	}
+
+	Object {
+		type sphere
+		pos 0.5 1.5 45.0
+		radius 1.0
+		color 255 0 255
+	}
+
+	Object {
+		type plane
+		pos 0.0 5.0 0.0
+		color 255 255 255
+		normal 0.0 -1.0 0.0
+	}
+
+	Object {
+		type plane
+		pos 0.0 -5.0 0.0
+		color 255 255 255
+		normal 0.0 1.0 0.0
+	}
+
+	Object {
+		type plane
+		pos 0.0 0.0 55.0
+		color 255 255 255
+		normal 0.0 0.0 -1.0
+	}
+
+	Object {
+		type plane
+		pos -5.0 0.0 0.0
+		color 255 255 255
+		normal 1.0 0.0 0.0
+	}
+
+	Object {
+		type plane
+		pos 5.0 0.0 0.0
+		color 255 255 255
+		normal -1.0 0.0 0.0
+	}
+
+	Object {
+		type cylinder
+		pos -5.0 0.0 55.0
+		radius 1.0
+		color 255 255 255
+	}
+
+	Object {
+		type cylinder
+		pos 5.0 0.0 55.0
+		radius 1.0
+		color 255 255 255
+	}
+
+	Object {
+		type cylinder
+		pos 0.0 5.0 55.0
+		rot 0.0 0.0 -90.0
+		radius 1.0
+		color 255 255 255
+	}
+
+	Object {
+		type cylinder
+		pos 0.0 -5.0 55.0
+		rot 0.0 0.0 -90.0
+		radius 1.0
+		color 255 255 255
+	}
+
+	Object {
+		type cylinder
+		pos 0.0 -2.0 55.0
+		rot 0.0 0.0 -90.0
+		radius 1.0
+		color 255 255 255
+	}
+
+	Object {
+		type cylinder
+		pos 0.0 2.0 55.0
+		rot 0.0 0.0 -90.0
+		radius 1.0
+		color 255 255 255
+	}
+
+	Object {
+		type cylinder
+		pos 0.0 0.0 55.0
+		rot 0.0 0.0 0.0
+		radius 1.0
+		color 255 255 255
+	}
+
+	Object {
+		type cylinder
+		pos 5.0 -5.0 0.0
+		rot 90.0 0.0 0.0
+		radius 1.0
+		color 255 255 255
+	}
+
+	Object {
+		type cylinder
+		pos 5.0 5.0 0.0
+		rot 90.0 0.0 0.0
+		radius 1.0
+		color 255 255 255
+	}
+
+	Object {
+		type cylinder
+		pos -5.0 -5.0 0.0
+		rot 90.0 0.0 0.0
+		radius 1.0
+		color 255 255 255
+	}
+
+	Object {
+		type cylinder
+		pos -5.0 5.0 0.0
+		rot 90.0 0.0 0.0
+		radius 1.0
+		color 255 255 255
+	}
+
+	Light {
+		pos -3.0 0.0 40.0
+		color 255 255 255
+		attenuation 0.2
+	}
+}

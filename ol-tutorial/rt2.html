@@ -1,0 +1,499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!-- saved from url=(0065)http://perso.epitech.eu/~ol/work/raytracer/cours/cours/rt1-2.html -->
+<html class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>rt</title>
+<meta name="description" content="rt">
+<meta name="keywords" content="rt">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+
+<meta name="Generator" content="LaTeX2HTML v2K.1beta">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+
+<link rel="next" href="http://perso.epitech.eu/~ol/work/raytracer/cours/cours/node1.html">
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="./rt2_files/translateelement.css"></head>
+
+<body bgcolor="white">
+
+<center>
+<h1><font><font>Basic computer graphics - Epitech1</font></font></h1><br><font><font>
+Part I - Lesson 2
+</font></font></center>
+
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Images</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ This train?
+
+	   </font><font>
+	 
+ It has already told you, it's normal.
+
+	   </font><font>
+	 
+ But we still will speed things:
+
+ </font><font> 
+ - Create a temporary image in memory.
+
+ </font><font> 
+ - It draws in the image, not in the window on the screen .
+
+ </font><font> 
+ - It appears one blow the contents of the image in the window.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>16</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Visit the video card</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ The temporary image that will be created by the minilibX will have the
+
+ </font></font><br><font><font>
+same format as the image stored in the video card in order
+
+ </font></font><br><font><font>
+to optimize the copy between.
+
+</font></font></p><p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ For each point of the image, it will store a color.
+
+ </font></font><br><font><font>
+According to the configuration, more or fewer colors will be
+
+ </font></font><br><font><font>
+available simultaneously on the screen. </font><font>The configurations
+
+ </font></font><br><font><font>
+are known </font></font><i><font><font>256</font></font></i><font><font> , </font></font><i><font><font>32000</font></font></i><font><font> and </font></font><i><font><font>16 million</font></font></i><font><font> colors.
+
+</font></font></p><p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ The more a color on the screen, the longer it takes place
+
+ </font></font><br><font><font>
+in memory to store the color of a pixel:
+
+ </font><i><font>256 </font></i><i><font>1 byte</font></i><font> , </font><i><font>32000 </font></i><i><font>2 bytes</font></i><font> ,
+            </font><i><font>16M </font></i><i><font>3 bytes</font></i><font> .
+
+</font></font><br> 
+ <i><font></font></i> <img width="42" height="31" align="BOTTOM" border="0" src="./rt2_files/img1.png" alt="$ \ To $"> <i><font></font></i><font></font><i><font></font></i> <img width="42" height="31" align="BOTTOM" border="0" src="./rt2_files/img1.png" alt="$ \ To $"> <i><font></font></i><font></font><i><font></font></i> <img width="42" height="31" align="BOTTOM" border="0" src="./rt2_files/img1.png" alt="$ \ To $"> <i><font></font></i><font></font></p><p>
+
+	<font size="-2"><font><font>17</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>The format of our images</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ An image will be stored in a single continuous area of memory.
+
+	   </font><font>
+	 
+ Each pixel has memory 1, 2 or 3 Bytes.
+
+	   </font><font>
+	 
+ These groups of bytes representatives of pixels are arranged
+
+ </font><font>
+from left to right and top to bottom, the pixel </font><font>up
+
+ </font><font>
+one located at the bottom right.
+
+	   </font><font>
+	 
+ Specifically:
+
+ </font><font>
+An image of 100 </font><font>50 pixels, 5000 pixels, and each pixel
+
+ </font><font>
+is coded on 3 bytes. </font><font>It was therefore an image stored in an area
+
+ </font><font>
+of 15,000 bytes memory. </font><font>To move from one pixel to the next
+
+ </font><font> 
+ (to his right), jump 3 bytes. </font><font>To switch from one line to
+
+ </font><font>
+the next (down), we jump 100 pixels </font><font>3 bytes,
+
+ </font><font>
+or 300 bytes.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><img width="94" height="62" align="MIDDLE" border="0" src="./rt2_files/img4.png" alt="$ (0,0) $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><img width="34" height="62" align="MIDDLE" border="0" src="./rt2_files/img5.png" alt="$ \ Times $"><font></font><br><font></font><br><font></font><br><font></font><br><font></font><img width="34" height="62" align="MIDDLE" border="0" src="./rt2_files/img5.png" alt="$ \ Times $"><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>18</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>RGB color </font></font><img width="39" height="62" align="MIDDLE" border="0" src="./rt2_files/img6.png" alt="$ \ Ne $"><font><font>bytes in memory</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ Bytes in memory for each pixel does not correspond
+
+ </font></font><br><font><font>
+necessarily to the three bytes of a color expressed by RGB.
+
+	   </font><font>
+	 
+ The minilibX contains a transfer function between a color
+
+ </font><font>
+defined by its RGB components and the bytes to be stored
+
+ </font><font>
+in video memory (or in a image):
+
+ </font><code><font>mlx_get_color_value unsigned int (void * mlx_ptr, int color) </font></code><code><font>color</font></code><font> contains 3 of the 4 bytes RGB components of our
+
+ </font><font>
+color. </font><font>The function returns an </font><code><font>unsigned int</font></code><font> that contains the
+
+ </font><font>
+8/16/24 bits in the video memory to encode the
+
+ </font><font>
+desired color. </font><font>We will put these bits in the bytes of
+
+ </font><font>
+the temporary image corresponding to the desired pixel.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br> 
+   <code><font></font></code>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $">
+	 
+ <code><font></font></code><font></font><br><font></font><code><font></font></code><font></font><br><font></font><br><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>19</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Creating an Image</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ Directed by:
+
+ </font><code><font>mlx_new_image void * (void * mlx_ptr, int width, int height) </font></code><code><font>width</font></code><font> and </font><code><font>height</font></code><font> define the width and height
+
+ </font><font>
+of the created image. </font><font>The function returns an identifier that will allow
+
+ </font><font>
+the subsequent use of the image.
+
+</font></font><br> 
+   <code><font></font></code>
+
+<br> 
+ <code><font></font></code><font></font><code><font></font></code><font></font><br><font></font><br><font></font></p><p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ Example:
+  </font></font><table width="1134">
+<tbody><tr><td>
+<pre><font><font>[...]</font></font><font></font><font><font>
+void * mlx_ptr;</font></font><font></font><font><font>
+void * img_ptr;</font></font><font></font><font><font>
+[...]</font></font><font></font><font><font>
+mlx_ptr mlx_init = ();</font></font><font></font><font><font>
+[...]</font></font><font></font><font><font>
+img_ptr = mlx_new_image (mlx_ptr, 300,300);</font></font><font></font>
+</pre></td></tr>
+</tbody></table>
+
+</p><p>
+
+	<font size="-2"><font><font>20</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Fill the image</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+The minilibX will provide us with the information needed to
+
+ </font></font><br><font><font>
+properly complete the image you just created:
+
+ </font><code><font>char * mlx_get_data_addr (void * img_ptr, bits_per_pixel int *, </font></code><code><font>int * size_line, int * endian)</font></code><font> 
+	 
+ function returns a </font><code><font>char *</font></code><font> that points the memory area
+
+ </font><font>
+where the pixel bytes are stored. </font><font>The 3 variables
+
+ </font><code><font>bits_per_pixel</font></code><font> , </font><code><font>size_line</font></code><font> and </font><code><font>endian</font></code><font> contain respectively:
+
+ </font><font> 
+ - the number of bits dedicated to a pixel (8, 16 or 24)
+
+ </font><font> 
+ - the size in bytes of a line of pixels
+
+ </font><font> 
+ - the </font><em><font>endian</font></em><font> of the machine where the server is located X
+
+ </font><font> 
+ (0: little endian, 1: big endian).
+
+</font></font><br> 
+   <code><font></font></code>
+
+<br> 
+   <code><font></font></code>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font></font><code><font></font></code><font></font><br><font></font><br> 
+ <code><font></font></code><font></font><code><font></font></code><font></font><code><font></font></code><font></font><br><font></font><br><font></font><br><font></font><em><font></font></em><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>21</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Fill the image</font></font></font>
+	
+</div>
+
+<p>
+  <img src="./rt2_files/image2.png">
+
+</p><p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ Example:
+  </font></font><table width="1134">
+<tbody><tr><td>
+<pre><font><font>char * data;</font></font><font></font><font><font>
+int bpp;</font></font><font></font><font><font>
+int sizeline;</font></font><font></font><font><font>
+endian int;</font></font><font></font><font><font>
+[...]</font></font><font></font><font><font>
+data = mlx_get_data_addr (img_ptr, &amp; bpp, and sizeline, and endian)</font></font><font></font>
+</pre></td></tr>
+</tbody></table>
+
+</p><p>
+
+	<font size="-2"><font><font>22</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Recommendations</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $">
+	 
+ <em><font><font>Warning:</font></font></em><font><font> the function </font></font><code><font><font>mlx_get_color_value</font></font></code><font><font> refer
+
+ </font></font><br><font><font>
+a </font></font><code><font><font>int</font></font></code><font><font> . </font><font>In this </font></font><code><font><font>int</font></font></code><font><font> , only some will be useful bytes
+
+ </font></font><br><font><font> 
+ (those that we will put in our image).
+
+ </font></font><br><font><font>
+This will always be the </font></font><em><font><font>low bytes</font></font></em><font><font> , ie
+
+ </font></font><br><font><font>
+the bytes right in the representation in hexadecimal,
+
+ </font></font><br><font><font>
+as is done to bring our RGB components in </font></font><code><font><font>int</font></font></code><font><font> .
+
+	   </font><font>
+	 
+ Facts attention to the endian of the machine where you
+
+ </font><font>
+are located and the endian X server: Bytes weight
+
+ </font><font>
+low are not always in the same location. </font><font>In some
+
+ </font><font>
+configurations, you may be ammenés to reverse the order
+
+ </font><font>
+of bytes to put in your image.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>23</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>For a pixel</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ Change the color of a pixel will require manipulation
+
+ </font></font><br><font><font>
+following:
+
+ </font></font><br><font><font> 
+ - Find remember the beginning of the line of our pixel
+
+ </font></font><br><font><font> 
+ - Find Bytes our pixel on that line
+
+ </font></font><br><font><font> 
+ - Changing these bytes by those of the new color
+
+</font></font></p><p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ Example:
+
+ </font></font><br><font><font>
+We want to change the color of the pixel 42 </font></font><img width="34" height="62" align="MIDDLE" border="0" src="./rt2_files/img5.png" alt="$ \ Times $"><font><font>to 142 for
+
+ </font></font><br><font><font>
+the orange ( </font></font><code><font><font>0x00FFA500</font></font></code><font><font> ). </font><font>It operates in 16 bits per pixel,
+
+ </font></font><br><font><font>
+or 2 bytes.
+
+ </font></font><br><font><font>
+The 2 bytes are my pixel at
+
+ </font><code><font>data + 142 </font></code><code><font>+ 2 size_line </font></code><code><font>42</font></code><font> 
+It remains only garnish with 2 bytes obtained by
+
+ </font><code><font>mlx_get_color_value</font></code><font> .
+
+</font></font><br> 
+ <code><font></font></code><img width="34" height="62" align="MIDDLE" border="0" src="./rt2_files/img5.png" alt="$ \ Times $"><code><font></font></code><img width="34" height="62" align="MIDDLE" border="0" src="./rt2_files/img5.png" alt="$ \ Times $"><code><font></font></code>
+
+<br><font></font><br> 
+ <code><font></font></code><font></font></p><p>
+
+	<font size="-2"><font><font>24</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Image Display</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt2_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ Once created and populated our image, it remains only to
+
+ </font></font><br><font><font>
+transmit the X server to display it in a window:
+
+ </font><code><font>mlx_put_image_to_window (void * mlx_ptr, win_ptr void *, </font></code><code><font>void * img_ptr, int x, int y)</font></code><font> 
+In addition to the three identifiers (connection, window and image),
+
+ </font><font>
+we find the coordinates </font><code><font>x</font></code><font> and </font><code><font>y</font></code><font> (ie the window)
+
+ </font><font>
+where the image will be displayed.
+
+</font></font><br> 
+   <code><font></font></code>
+
+<br> 
+  <code><font></font></code>
+
+<br><font></font><br><font></font><code><font></font></code><font></font><code><font></font></code><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>25</font></font></font>
+
+
+<br></p><hr>
+<i><font><font>Ol@epita.fr - tek1 - November 19, 2001 - Converted by latex2html</font></font></i><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./rt2_files/translate-32.png" width="20" height="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div>
+
+
+</body></html>

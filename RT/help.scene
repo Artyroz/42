@@ -1,0 +1,145 @@
+Les fonction que j'ai cree c'est pas pour faire jolie! c'est aussi pour eviter les segfault apres le parser.
+Rien n'est nul quand il passe dans le parser !
+_____________________
+Debut de la scene
+	Scene {
+ou
+	Scene
+	{
+Fin de la scene
+	}
+_____________________
+Dans la scene
+	Taille de la fenetre facultative:
+		width intValue
+		height intValue
+		max_reflect intValue
+	### CAMERA ###
+		Declaration de la camera facultative, elle sera en pos 0, 0, 0 par default, utiliser la fonction:
+			t_cam		*camera_new(double fov, double znear, double zfar);
+		Le fov par default est 70, znear 0.0, zfar 1000.0
+		on peu aussi definir pos et rot
+			fov 70.0
+			znear 0.0
+			zfar 100.0
+			pos 0.0 0.0 0.0
+			rot 0.0 0.0 0.0
+		La camera est normalement est cree par default dans le parser:
+			win->camera = camera_new(70, 0.0, 1000.0);
+		donc tout se qui est se qui est configurable:
+			Camera {
+				pos 0.0 0.0 0.0
+				rot 0.0 0.0 0.0
+				fov 70.0
+				znear 0.0
+				zfar 100.0
+			}
+	### OBJECT ###
+		Obligatoire general:
+			Object {
+				type <sphere | cylinder | cone | plane>
+				pos 0.0 0.0 10.0
+				color 255 0 0
+			}
+		Une fonction est deja faite pour initialiser un objet
+			t_objects		*objects_new(int type);
+		Les variable modifiable par la config:
+			t_vec3		*pos;
+			t_vec3		*rot;
+			t_color		*color;
+			double		radius;
+			int			material;
+		Se qui donne en config avec toutes les configs:
+			Object {
+				type <sphere | cylinder | cone | plane>
+				pos 0.0 0.0 10.0
+				rot 0.0 0.0 0.0
+				radius 2.0
+				color 255 0 0
+				material 1
+				normal 0.0 -1.0 0.0
+			}
+		Obligatoire par type:
+			Object {
+				type sphere
+				pos 0.0 0.0 10.0
+				color 255 0 0
+				radius 1.0
+			}
+			Object {
+				type cylinder
+				pos 0.0 0.0 10.0
+				color 255 0 0
+				radius 1.0
+			}
+			Object {
+				type <one
+				pos 0.0 0.0 10.0
+				color 255 0 0
+				radius 2.0
+			}
+			Object {
+				type plane
+				pos 0.0 0.0 10.0
+				color 255 0 0
+				normal 0.0 -1.0 0.0
+			}
+			Object {
+				type triangle
+				pos 0.0 0.0 10.0
+				color 255 0 0
+				ADD {
+					v0 0.0 0.0 0.0
+					v1 1.0 0.0 0.0
+					v2 1.0 1.0 0.0
+				}
+				ADD {
+					v0 1.0 1.0 0.0
+					v1 0.0 1.0 0.0
+					v2 0.0 0.0 0.0
+				}
+			}
+	### LIGHT ###
+		Il est possible que la scene n'est pas de lumiere, cela la desactive sur la scene
+		Declaration:
+			t_light			*light_new(t_vec3 *p, t_color *c, float attenuation);
+		La structure:
+			t_vec3	*pos;
+			t_color	*color;
+			float	attenuation;
+			t_vec3	*dir;
+		Le minimum
+			Light {
+				pos 0.0 0.0 0.0
+			}
+		Le default:
+			light_new(pos, color_new(1.0, 1.0, 1.0), 0.2f);
+		Le total possible:
+			Light {
+				pos 0.0 0.0 0.0
+				color 255 255 255
+				attenuation 0.2
+				dir 0.0 1.0 0.0
+			}
+	### MATERIAL ###
+		Il est possible que la scene n'est pas de lumiere, cela la desactive sur la scene
+		Declaration:
+			t_material		*material_new(t_color *amb, t_color *spec);
+		La structure:
+			t_color	*ambient_color;
+			t_color	*specular_color;
+			float	shininess;
+			int		blinn;
+			float	reflection;
+		Le minimum:
+			Pas obligatoire
+		Le default:
+			Pas obligatoire
+		Le total possible:
+			Material {
+				ambient 0.2 0.2 0.2
+				specular 1.0 1.0 1.0
+				shininess 32
+				blinn 1
+				reflection 0.2
+			}

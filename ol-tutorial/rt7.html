@@ -1,0 +1,623 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!-- saved from url=(0065)http://perso.epitech.eu/~ol/work/raytracer/cours/cours/rt4-7.html -->
+<html class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>rt4</title>
+<meta name="description" content="rt4">
+<meta name="keywords" content="rt4">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+
+<meta name="Generator" content="LaTeX2HTML v2K.1beta">
+
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="./rt7_files/translateelement.css"></head>
+
+<body bgcolor="white">
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Ray-Tracing - Adds-on</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ Shadows
+
+	   </font><font>
+	 
+ Brightness and brilliance
+
+	   </font><font>
+	 
+ limited Objects
+
+	   </font><font>
+	 
+ Reflections
+
+	   </font><font>
+	 
+ Transparency / modification shadows
+
+	   </font><font>
+	 
+ Direct Light
+
+	   </font><font>
+	 
+ Objects compounds
+
+	   </font><font>
+	 
+ Disturbances / textures
+
+	   </font><font>
+	 
+ Various: negative objects, ambient light
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font></p><p>
+
+	<font size="-2"><font><font>84</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Change the color</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ Raytracing technique allowed us to far
+
+ </font></font><br><font><font> 
+ - we move into our space
+
+ </font></font><br><font><font> 
+ - placing objects in a random position
+
+ </font></font><br><font><font> 
+ - to find for a given pixel, which object crosses our eyes.
+
+	   </font><font>
+	 
+ Our images are unrealistic for the moment. </font><font>Indeed, the
+
+ </font><font>
+color of the object is simply passed to the pixel in question.
+
+	   </font><font>
+	 
+ The shadow techniques, brightness and brilliance will only
+
+ </font><font>
+act on the color of the object in order to achieve the desired effects.
+
+ </font><font>
+This step then goes after determined the
+
+ </font><font>
+parameters of the intersection ray / object.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>85</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Shadows</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ Light sources will come into play. Let's start with
+
+ </font></font><br><font><font>
+a spotlight </font></font><img width="31" height="31" align="BOTTOM" border="0" src="./rt7_files/img2.png" alt="$ S $"><font><font>placed </font></font><img width="247" height="62" align="MIDDLE" border="0" src="./rt7_files/img3.png" alt="$ (500 500 500) $"><font><font>.
+
+	   </font><font>
+	 
+ This spot lights in all directions.
+
+	   </font><font>
+	 
+ In which case he has a shadow-y? </font><font>When an object </font><font>is
+
+ </font><font>
+located between the spot and the object </font><font>you look.
+
+	   </font><font>
+	 
+ A pixel </font><font>given the principle of ray-tracing we
+
+ </font><font>
+can associate to a point </font><font>on the object </font><font>(the intersection
+
+ </font><font>
+between the object and our right vision). </font><font>We then get
+
+ </font><font>
+a single line through the point and spot.
+
+	   </font><font>
+	 
+ Right-object intersection, it reminds you something?
+
+ </font><font>
+This is to retain THAT intersections that
+
+ </font><font>
+are between our object </font><font>and spot </font><font>.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><img width="35" height="30" align="BOTTOM" border="0" src="./rt7_files/img4.png" alt="$ B $"><font></font><br><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt7_files/img5.png" alt="$ A $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><img width="109" height="62" align="MIDDLE" border="0" src="./rt7_files/img6.png" alt="$ (X, Y) $"><font></font><br><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt7_files/img7.png" alt="$ P $"><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt7_files/img5.png" alt="$ A $"><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt7_files/img5.png" alt="$ A $"><font></font><img width="31" height="31" align="BOTTOM" border="0" src="./rt7_files/img2.png" alt="$ S $"><font></font></p><p>
+
+	<font size="-2"><font><font>86</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Shadows ...</font></font></font>
+	
+</div>
+
+ <img width="885" height="695" align="BOTTOM" border="0" src="./rt7_files/img90.png" alt="\ Includegraphics [] {} ombres.eps">
+
+	<font size="-2"><font><font>87</font></font></font>
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Right shadow</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ So we can write the parametric equation of the
+
+ </font></font><br><font><font>
+line between </font></font><img width="31" height="31" align="BOTTOM" border="0" src="./rt7_files/img2.png" alt="$ S $"><font><font>and </font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt7_files/img7.png" alt="$ P $"><font><font>:
+
+ </font><font>with the direction vector </font><font>
+	 
+ It is then to test the intersection between this line
+
+ </font><font>
+and all the objects in our space (just like the right
+
+ </font><font>
+vision). </font><font>Please note that only values </font><font>&#8203;&#8203;such as
+
+ </font><font>are interresting: beyond </font><font>, it is after
+
+ </font><font>
+the spot, and before </font><font>it is behind the point </font><font>.
+
+	   </font><font>
+	 
+ If there is no shade, the color of the object is used . </font><font>In
+
+ </font><font>
+the contrary case, use is a black or very close color.
+
+</font></font><br> 
+ <!-- MATH
+ $\left\{ \begin{array}{lll}
+x&=&x_P+kL_{x}\\
+y&=&y_P+kL_{y} \\
+z&=&z_P+kL_{z} \\
+\end{array}\right.$
+ -->
+<img width="306" height="143" align="MIDDLE" border="0" src="./rt7_files/img8.png" alt="$ \ Left \ {\ begin {array} {lll} x &amp; = &amp; x_P + kL_ {x} \\ y &amp; = &amp; y_P + kL_ {y} \\ z &amp; = &amp; Z_p + kL_ {z} \\ \ end {array} \ right . $"><font></font><!-- MATH
+ $\vec L\left| \begin{array}{l}
+ x_S - x_P \\
+ y_S - y_P \\
+ z_S - z_P \\
+\end{array}\right.$
+ -->
+<img width="194" height="143" align="MIDDLE" border="0" src="./rt7_files/img9.png" alt="$ \ Vec L \ left \ vert \ begin {array} {l} x_S - x_P y_S \\ - \\ y_P z_S -. Z_p \\ \ end {array} \ right $">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><img width="27" height="31" align="BOTTOM" border="0" src="./rt7_files/img10.png" alt="$ K $"><font></font><br> 
+ <img width="156" height="62" align="MIDDLE" border="0" src="./rt7_files/img11.png" alt="$ 0 &lt;k &lt;$ 1"><font></font><img width="28" height="30" align="BOTTOM" border="0" src="./rt7_files/img12.png" alt="$ 1"><font></font><br><font></font><img width="28" height="31" align="BOTTOM" border="0" src="./rt7_files/img13.png" alt="$ 0"><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt7_files/img7.png" alt="$ P $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>88</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Brightness</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ This is to visually highlight the parts
+
+ </font></font><br><font><font>
+more informed of the object: a point is more `` face 'to the spot,
+
+ </font></font><br><font><font>
+the more the intensity of the color will be.
+
+	   </font><font>
+	 
+ This technique requires knowing a vector </font><i><font>normal</font></i><font>  
+ to subject to the point of intersection </font><font>(a vector perpendicular
+
+ </font><font>
+to the plane tangent to the object at the point of intersection).
+
+	   </font><font>
+	 
+ It re-uses the vector </font><font>between the intersection point and
+
+ </font><font>
+the spot.
+
+	   </font><font>
+	 
+ More vectors are `near ' plus the point will be illuminated.
+
+ </font><font>
+This results in the angle </font><font>between the vectors </font><font>and </font><font>.
+
+ </font><font>
+The greater the angle </font><font>, the smaller the dot is bright.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><img width="38" height="36" align="BOTTOM" border="0" src="./rt7_files/img14.png" alt="$ \ Vec N $"> <i><font></font></i>
+
+<br><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt7_files/img7.png" alt="$ P $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><img width="31" height="36" align="BOTTOM" border="0" src="./rt7_files/img15.png" alt="$ \ Vec L $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><img width="26" height="31" align="BOTTOM" border="0" src="./rt7_files/img16.png" alt="$ A $"><font></font><img width="38" height="36" align="BOTTOM" border="0" src="./rt7_files/img14.png" alt="$ \ Vec N $"><font></font><img width="31" height="36" align="BOTTOM" border="0" src="./rt7_files/img15.png" alt="$ \ Vec L $"><font></font><br><font></font><img width="26" height="31" align="BOTTOM" border="0" src="./rt7_files/img16.png" alt="$ A $"><font></font></p><p>
+
+	<font size="-2"><font><font>89</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Brightness ...</font></font></font>
+	
+</div>
+
+ <img width="504" height="452" align="BOTTOM" border="0" src="./rt7_files/img91.png" alt="\ Includegraphics [height = 10cm] {} lumi.eps">
+
+	<font size="-2"><font><font>90</font></font></font>
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Calculations of brightness</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ This calculation is done using the dot product of two vectors
+
+ </font><font>.
+
+ </font><font>
+Of course </font><font>.
+
+	   </font><font>is found. </font><font>Over the cosine value is close
+
+ </font><font>, the larger the angle </font><font>is near </font><font>. </font><font>When the cosine is
+
+ </font><font>
+negative, the point `` look '' not the light and will therefore be
+
+ </font><font>
+black (as if it was in the shade).
+
+	   </font><font>
+	 
+ For values &#8203;&#8203;between </font><font>and </font><font>, the cosine will serve as a
+
+ </font><font>
+multiplier of the three RGB components the color
+
+ </font><font>
+of the object. </font><font>Eg:
+
+</font></font><br> 
+ <!-- MATH
+ $\vec N.\vec L = ||\vec N||||\vec L||cos(a) = N_xL_x+N_yL_y+N_zL_z$
+ -->
+<img width="723" height="74" align="MIDDLE" border="0" src="./rt7_files/img17.png" alt="$ \ Vec N \ vec L = \ vert \ vert \ vec N \ vert \ vert \ vert \ vert \ vec L \ vert \ vert cos (a) = + N_xL_x N_yL_y + $ N_zL_z"><font></font><br><font></font><!-- MATH
+ $||\vec N|| = \sqrt{N_x^2+N_y^2+N_z^2}$
+ -->
+<img width="386" height="82" align="MIDDLE" border="0" src="./rt7_files/img18.png" alt="$ \ Vert \ vert \ vec N \ vert \ vert = \ sqrt {n_x N_y ^ 2 + ^ 2 + ^ 2} $ N_z"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $">
+	 
+ <img width="103" height="62" align="MIDDLE" border="0" src="./rt7_files/img19.png" alt="$ Cos (a) $"><font></font><br> 
+ <img width="28" height="30" align="BOTTOM" border="0" src="./rt7_files/img12.png" alt="$ 1"><font></font><img width="26" height="31" align="BOTTOM" border="0" src="./rt7_files/img16.png" alt="$ A $"><font></font><img width="28" height="31" align="BOTTOM" border="0" src="./rt7_files/img13.png" alt="$ 0"><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><img width="28" height="31" align="BOTTOM" border="0" src="./rt7_files/img13.png" alt="$ 0"><font></font><img width="28" height="30" align="BOTTOM" border="0" src="./rt7_files/img12.png" alt="$ 1"><font></font><br><font></font><br><font></font><br> 
+ <!-- MATH
+ $new\_rouge = rouge\times cos(a)$
+ -->
+<img width="439" height="62" align="MIDDLE" border="0" src="./rt7_files/img20.png" alt="New $ \ _rouge = red \ times cos (a) $">
+
+</p><p>
+
+	<font size="-2"><font><font>91</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Normal ...</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ The normal vector at the intersection point is first
+
+ </font></font><br><font><font>
+determined in the single position of the object, and then
+
+ </font></font><br><font><font>
+converts back to its true coordinates, with the rotation and
+
+ </font></font><br><font><font> 
+ the translation.
+
+	   </font><font>
+	 
+ We call </font><font>the point of intersection in the simple position
+
+ </font><font>
+of the object.
+
+	   </font><font>
+	 
+ For the sphere, the vector </font><font>is suitable as a normal vector </font><font>.
+
+	   </font><font>
+	 
+ In the plan, as our object is simply the horizontal plane
+
+ </font><font>, the vector </font><font>is appropriate, regardless of the point of intersection.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt7_files/img7.png" alt="$ P $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><!-- MATH
+ $\left|\begin{array}{l} x_P\\y_P\\z_P\\\end{array}\right.$
+ -->
+<img width="86" height="143" align="MIDDLE" border="0" src="./rt7_files/img21.png" alt="$ \ Left \ vert \ begin {array} {l} x_P \\ \\ y_P Z_p \\ \ end {array} \ right. $"><font></font><img width="38" height="36" align="BOTTOM" border="0" src="./rt7_files/img14.png" alt="$ \ Vec N $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br> 
+ <img width="95" height="31" align="BOTTOM" border="0" src="./rt7_files/img22.png" alt="$ Z = $ 0"><font></font><!-- MATH
+ $\left|\begin{array}{l} 0\\0\\100\\\end{array}\right.$
+ -->
+<img width="104" height="143" align="MIDDLE" border="0" src="./rt7_files/img23.png" alt="$ \ Left \ vert \ begin {array} {l} 0 \\ 0 \\ \\ 100 \ end {array} \ right. $"><font></font></p><p>
+
+	<font size="-2"><font><font>92</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>... Our objects</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ For the cylinder </font><font>
+	 
+ to the cone equation </font><font>:
+
+ </font><i><font>Warning:</font></i><font> As for the point </font><font>, you will calculate
+
+ </font><font>
+the coordinates </font><font>single position of the object.
+
+ </font><font>
+REMEMBER to convert these coordinates actual position
+
+ </font><font>
+of the object. </font><font>If not, </font><font>and </font><font>
+ will be completely wrong.
+
+	 </font><font size="-2"><font>93</font></font></font><!-- MATH
+ $\left|\begin{array}{l} x_P\\y_P\\0\\\end{array}\right.$
+ -->
+<img width="86" height="143" align="MIDDLE" border="0" src="./rt7_files/img24.png" alt="$ \ Left \ vert \ begin {array} {l} \\ x_P y_P \\ 0 \\ \ end {array} \ right. $">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><!-- MATH
+ $x^2 + y^2 - cte\times z^2 = 0$
+ -->
+<img width="354" height="69" align="MIDDLE" border="0" src="./rt7_files/img25.png" alt="$ X ^ 2 + y ^ 2 - ct \ times z ^ 2 = $ 0"><font></font><br> 
+ <!-- MATH
+ $\left|\begin{array}{l} x_P\\y_P\\-cte\times z_P\\\end{array}\right.$
+ -->
+<img width="193" height="143" align="MIDDLE" border="0" src="./rt7_files/img26.png" alt="$ \ Left \ vert \ begin {array} {l} x_P \\ \\ y_P -cte \ times Z_p \\ \ end {array} \ right. $">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $">
+	 
+ <i><font></font></i><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt7_files/img7.png" alt="$ P $"><font></font><br><font></font><img width="38" height="36" align="BOTTOM" border="0" src="./rt7_files/img14.png" alt="$ \ Vec N $"><font></font><br><font></font><br><font></font><img width="31" height="36" align="BOTTOM" border="0" src="./rt7_files/img15.png" alt="$ \ Vec L $"><font></font><img width="71" height="36" align="BOTTOM" border="0" src="./rt7_files/img27.png" alt="$ \ Vec N \ vec L $"><font></font><font size="-2"><font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Brightness</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ The brightness of the object will intervene along
+
+ </font></font><br><font><font>
+the brightness.
+
+	   </font><font>
+	 
+ The principle is that the more a surface is bright,
+
+ </font><font>
+over the final color will depend on the spot (a spot
+
+ </font><font>
+. color traumatized person I hope)
+
+	   </font><font>
+	 
+ The concept of gloss will concretely expressed by
+
+ </font><font>
+a constant </font><font>between </font><font>and </font><font>specific to each object.
+
+ </font><font>
+One can formulas is:
+
+ </font><font>
+	 
+ The </font><font>always present: one face to the shadow that
+
+ </font><font>
+shines, it's a mess!
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><img width="140" height="31" align="BOTTOM" border="0" src="./rt7_files/img28.png" alt="$ $ Shine"><font></font><img width="28" height="31" align="BOTTOM" border="0" src="./rt7_files/img13.png" alt="$ 0"><font></font><img width="28" height="30" align="BOTTOM" border="0" src="./rt7_files/img12.png" alt="$ 1"><font></font><br><font></font><br> 
+ <!-- MATH
+ $new\_rouge2 = new\_rouge + brillance \times rouge_{spot} \times cos(a)$
+ -->
+<img width="883" height="62" align="MIDDLE" border="0" src="./rt7_files/img29.png" alt="New $ \ _rouge2 = new \ _rouge + shine \ times {rouge_ spot} \ times cos (a) $">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><img width="103" height="62" align="MIDDLE" border="0" src="./rt7_files/img19.png" alt="$ Cos (a) $"><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>94</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Formulas: find yours!</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $">
+	 
+ <i><font><font>Caution:</font></font></i><font><font> for many colors calculations brightness
+
+ </font></font><br><font><font>
+. transparency, reflection, ... formulas are far from unique
+
+ </font></font><br><font><font>
+If other proportions, other way to mix
+
+ </font></font><br><font><font>
+colors look more realistic, please to the
+
+ </font></font><br><font><font>
+use !!
+
+	   </font><font>
+	 
+ For example: in the brightness of formula is not taken into
+
+ </font><font>
+account the power of light. </font><font>If the light is
+
+ </font><font>
+low, the object will appear to be less informed.
+
+	   </font><font>
+	 
+ Thus our color will decrease in proportion to
+
+ </font><font>
+the intensity of the color of the spot:
+
+ </font><font>
+with </font><font>the greatest possible value for the
+
+ </font><font>
+red component.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br> 
+ <!-- MATH
+ $new\_rouge = rouge\times cos(a) \times  \frac{rouge_{spot}}{rouge_{MAX}}$
+ -->
+<img width="615" height="72" align="MIDDLE" border="0" src="./rt7_files/img30.png" alt="New $ \ _rouge = red \ times cos (a) \ times \ frac {{rouge_ Spot}} {{rouge_ MAX}} $">
+
+<br><font></font><img width="170" height="62" align="MIDDLE" border="0" src="./rt7_files/img31.png" alt="Rouge_ $ {MAX} $"><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>95</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Multi-spot</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ How when you have several spots?
+
+ </font></font><br><font><font>
+Again, you can choose your formula.
+
+ </font></font><br><font><font>
+The easiest way is to add the components of different
+
+ </font></font><br><font><font>
+color obtained for each spot.
+
+ </font><font>
+	 
+ In order to stay in reasonable levels of color,
+
+ </font><font>
+you can then divide the total by the number of spots.
+
+ </font><font>
+	 
+ Another solution to integrate your formulas intensity
+
+ </font><font>
+spots for the final color is not completely
+
+ </font><font>
+saturated (usually it gives the white).
+
+</font></font><br> 
+ <!-- MATH
+ $new\_rouge_{final} = new\_rouge_{spot1}+new\_rouge_{spot2}+...$
+ -->
+<img width="856" height="62" align="MIDDLE" border="0" src="./rt7_files/img32.png" alt="New $ \ {final} _rouge_ = new \ _rouge_ spot1 {} + new \ _rouge_ {} + ... $ spot2">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br> 
+ <!-- MATH
+ $new\_rouge_{final} = (new\_rouge_{spot1}+new\_rouge_{spot2}+...)/nb\_spots$
+ -->
+<img width="1030" height="62" align="MIDDLE" border="0" src="./rt7_files/img33.png" alt="New $ \ _rouge_ {final} = (new \ _rouge_ spot1 {} + new \ _rouge_ spot2 {} + ...) / nb \ $ _spots">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt7_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>96</font></font></font>
+
+
+</p><p>
+<br></p><hr><font><font>
+Ol - IGRAPH tek1 - January 22, 2002 - Converted by LaTeX2HTML </font></font><br><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./rt7_files/translate-32.png" width="20" height="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div>
+
+
+</body></html>

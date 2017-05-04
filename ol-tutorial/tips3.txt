@@ -1,0 +1,31 @@
+TP3 Sem 3 Dec
+ - retour sur les images ?
+ - droite, fonction draw_line
+    - partir de l'exemple du cours. ajouter ce qui est necessaire.
+       verifier que ca marche dans les cas 1 et 2
+    - dupliquer cet exemple et le modifier pour les cas 5 et 6
+    - ecrire la fonction draw_line qui appelle une des 2 fonctions precedentes
+       suivant le cas, et inverse les deux points pour les
+       cas 3 et 4, puis 7 et 8
+    - draw_line_image : mlx_pixel_put => my_pixel_put_to_image
+ - fonction de conversion 3 coord -> 2 coord parallele
+    - passer en parametre un ptr/structure avec les coord 3D, un autre
+       avec les variables 2D a remplir
+    - faire 2 petites fonctions qui recentrent le (0,0,0) en fonction de la
+       taille de la fenetre.
+ - cube en projection parallele
+    prendre comme coordonnees (0,0,0),...(+50,+50,+50) (8 points)
+    On commence par 12 draw_line. (image ou pas)
+ - fonction de conversion iso
+ - cube en projection iso
+ - fil de fer d'apres un tableau de (x,y,z) parallele/iso
+    - utiliser le fichier ~astek/c/data/igraph-mp1/elem.fdf.c
+    - description : c'est un tableau de 300 int, qu'il faut
+       voir comme 100 points dont on a les 3 coordonnees,
+       ces 100 points sont en fait 10 lignes de 10 points
+      Il faut tracer 2 draw_line pour chaque point :
+          un draw_line vers le point suivant sur la meme ligne (a droite)
+          un draw_line vers le meme point sur la ligne suivante (au dessous)
+Pour ceux qui s'embetent
+ - cercle/ellipse
+ - remplissage d'une forme dans une image (bonus du fdf)

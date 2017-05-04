@@ -1,0 +1,775 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!-- saved from url=(0065)http://perso.epitech.eu/~ol/work/raytracer/cours/cours/rt4-8.html -->
+<html class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>rt4</title>
+<meta name="description" content="rt4">
+<meta name="keywords" content="rt4">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+
+<meta name="Generator" content="LaTeX2HTML v2K.1beta">
+
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="./rt8_files/translateelement.css"></head>
+
+<body bgcolor="white">
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Limited items</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ With limited items, we will be able to create:
+
+ </font></font><br><font><font> 
+ - tracks sphere
+
+ </font></font><br><font><font> 
+ - cylinder pieces
+
+ </font></font><br><font><font> 
+ - pieces of cone
+
+ </font></font><br><font><font> 
+ - parallelograms
+
+ </font></font><br><font><font> 
+ - triangles
+
+ </font></font><br><font><font> 
+ - Disk
+
+	   </font><font>
+	 
+ methods presented here are of course changed at
+
+ </font><font>
+your leisure.
+
+	   </font><font>
+	 
+ The limits an object will be defined in simple position.
+
+	 </font><font size="-2"><font>97</font></font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><font size="-2"><font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>We go: the sphere</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ Is desired to remove the top portion of a sphere at
+
+ </font></font><br><font><font>
+half the radius </font></font><img width="34" height="31" align="BOTTOM" border="0" src="./rt8_files/img34.png" alt="$ R $"><font><font>.
+
+ </font><font>
+	 
+ In the simple position, simply to say that the points
+
+ </font><font>
+above the plane </font><font>does not belong to the sphere.
+
+</font></font><br>
+
+<br> 
+   <img width="606" height="226" align="BOTTOM" border="0" src="./rt8_files/img92.png" alt="\ Includegraphics [height = 5cm] {} limit_sphere.eps">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><!-- MATH
+ $z = \frac{R}{2}$
+ -->
+<img width="100" height="74" align="MIDDLE" border="0" src="./rt8_files/img35.png" alt="$ Z = \ frac {R} {2} $"><font></font></p><p>
+
+	<font size="-2"><font><font>98</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>The algo</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ Specifically:
+
+ </font></font><br><font><font> 
+ - Calculation of the intersection with the single object position.
+
+ </font></font><br><font><font> 
+ - point calculation </font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt8_files/img7.png" alt="$ P $"><font><font>of intersection still single position.
+
+ </font></font><br><font><font> 
+ - Have we </font><font>? </font><font>If so, the sphere function
+
+ </font><font>
+`` not respond intersection. '' </font><font>Otherwise, nothing is changed.
+
+ </font><font> 
+ - </font><font>is calculated, contact information </font><font>, and </font><font>are
+
+ </font><font>
+transformed by rotations and translated as usual.
+
+	   </font><font>
+	 
+ The data on the sphere are enriched:
+
+ </font><font> 
+ - origin - ray - color - 3 rotations - brightness coefficient
+
+ </font><font> 
+ - high limit - lower limit - soon transparency, reflection,
+
+ </font><font>
+texture, disturbance functions.
+
+	 </font><font size="-2"><font>99</font></font></font><!-- MATH
+ $z_P > \frac{R}{2}$
+ -->
+<img width="117" height="74" align="MIDDLE" border="0" src="./rt8_files/img36.png" alt="$ Z_p&gt; \ frac {R} {2} $"><font></font><br><font></font><br><font></font><img width="38" height="36" align="BOTTOM" border="0" src="./rt8_files/img14.png" alt="$ \ Vec N $"><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt8_files/img7.png" alt="$ P $"><font></font><img width="38" height="36" align="BOTTOM" border="0" src="./rt8_files/img14.png" alt="$ \ Vec N $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><font size="-2"><font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Limit cylinder and cone</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ The cylinder and cone in their simple position are arranged
+
+ </font></font><br><font><font>
+along the axis </font></font><img width="25" height="31" align="BOTTOM" border="0" src="./rt8_files/img37.png" alt="$ Z $"><font><font>.
+
+	   </font><font>
+	 
+ The same test is used for the sphere:
+
+ </font><font>
+	 
+ Our two objects are enriched by features 2
+
+ </font><font>
+additional.
+
+ </font><font size="-2"><font>100</font></font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br> 
+ <!-- MATH
+ $limite_{basse} < z_P < limite_{haute}$
+ -->
+<img width="456" height="62" align="MIDDLE" border="0" src="./rt8_files/img38.png" alt="Limite_ $ {low} &lt;Z_p &lt;limite_ {high} $">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br>
+
+<br> 
+   <img width="662" height="269" align="BOTTOM" border="0" src="./rt8_files/img93.png" alt="\ Includegraphics [height = 6cm] {} cylcol.eps">
+
+	<font size="-2"><font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>The limited terms</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ Each of the following cases involves adding data to the
+
+ </font></font><br><font><font>
+definition of the plan.
+
+	   </font><font>
+	 
+ The disc: one tests </font><font>(Remember we are in the
+
+ </font><font>
+plane </font><font>).
+
+	   </font><font>
+	 
+ The parallelogram defined by </font><font>and </font><font>in the plan </font><font>:
+
+ </font><font>
+we want to have </font><font>with </font><font>and </font><font>between </font><font>and </font><font>.
+
+	   </font><font>
+	 
+ We obtained rapidly </font><font>and </font><font>.
+
+ </font><font>
+If </font><font>and </font><font>do not fulfill the condition, the map function
+
+ </font><font>
+responds `` no intersection. ''
+
+	   </font><font>
+	 
+ The triangle with exactly the same calculation is tested, PLUS
+
+ </font><font>
+the parallelogram, so </font><font>.
+
+	 </font><font size="-2"><font>101</font></font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><!-- MATH
+ $(x_P^2+y_P^2)<R^2$
+ -->
+<img width="253" height="69" align="MIDDLE" border="0" src="./rt8_files/img39.png" alt="$ (X_P y_P ^ ^ 2 + 2) &lt;R ^ 2 $"><font></font><br><font></font><img width="95" height="31" align="BOTTOM" border="0" src="./rt8_files/img22.png" alt="$ Z = $ 0"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><img width="45" height="74" align="MIDDLE" border="0" src="./rt8_files/img40.png" alt="$ \ Vec $ V_1"><font></font><img width="45" height="74" align="MIDDLE" border="0" src="./rt8_files/img41.png" alt="$ \ Vec $ V_2"><font></font><img width="95" height="31" align="BOTTOM" border="0" src="./rt8_files/img22.png" alt="$ Z = $ 0"><font></font><br><font></font><!-- MATH
+ $P = k_1\vec V_1 + k_2\vec V_2$
+ -->
+<img width="273" height="74" align="MIDDLE" border="0" src="./rt8_files/img42.png" alt="K_1 $ P = \ vec k_2 V_1 + \ vec $ V_2"><font></font><img width="43" height="62" align="MIDDLE" border="0" src="./rt8_files/img43.png" alt="$ K_1"><font></font><img width="43" height="62" align="MIDDLE" border="0" src="./rt8_files/img44.png" alt="$ K_2"><font></font><img width="28" height="31" align="BOTTOM" border="0" src="./rt8_files/img13.png" alt="$ 0"><font></font><img width="28" height="30" align="BOTTOM" border="0" src="./rt8_files/img12.png" alt="$ 1"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><!-- MATH
+ $k_2 = \frac{V_{1x}y_P-x_PV_{1y}}{V_{2y}V_{1x}-V_{1y}V_{2x}}$
+ -->
+<img width="293" height="87" align="MIDDLE" border="0" src="./rt8_files/img45.png" alt="$ K_2 = \ frac {V_ {1x} y_P-x_PV_}} {{1y 2y} {V_ V_ {1x} {1y -V_} V_ {2x}} $"><font></font><!-- MATH
+ $k_1 = \frac{x_P-k_2V_{2x}}{V_{1x}}$
+ -->
+<img width="226" height="80" align="MIDDLE" border="0" src="./rt8_files/img46.png" alt="$ K_1 = \ frac {x_P-k_2V_ {2x}} {V_ {1x}} $"><font></font><br><font></font><img width="43" height="62" align="MIDDLE" border="0" src="./rt8_files/img43.png" alt="$ K_1"><font></font><img width="43" height="62" align="MIDDLE" border="0" src="./rt8_files/img44.png" alt="$ K_2"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><img width="188" height="62" align="MIDDLE" border="0" src="./rt8_files/img47.png" alt="$ K_1 + k_2 &lt;$ 1"><font></font><font size="-2"><font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Reflection</font></font></font>
+	
+</div>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ This is getting a `` mirror effect '.
+
+	   </font><font>
+	 
+ This effect is quantified by a constant between </font><font>and </font><font>.
+
+ </font><font>
+More constant is close to </font><font>, the mirror effect is more
+
+ </font><font>
+important.
+
+	   </font><font>
+	 
+ For this, we calculate a `` radius thought '' for
+
+ </font><font>
+our Department of vision:
+
+ </font><i><font>WARNING !!!</font></i><font> This formula works for vectors
+
+ </font><font>
+. UNIT (divide the coordinates of the vector by its norm)
+
+	   </font><font>
+	 
+ The point of intersection </font><font>and the vector </font><font>gives us
+
+ </font><font>
+a new beam to which we will calculate recursively the
+
+ </font><font>
+intersections with objects and color that we would see
+
+ </font><font>
+if our eye was in </font><font>.
+
+	 </font><font size="-2"><font>102</font></font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><img width="28" height="31" align="BOTTOM" border="0" src="./rt8_files/img13.png" alt="$ 0"><font></font><img width="28" height="30" align="BOTTOM" border="0" src="./rt8_files/img12.png" alt="$ 1"><font></font><br><font></font><img width="28" height="30" align="BOTTOM" border="0" src="./rt8_files/img12.png" alt="$ 1"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br> 
+ <!-- MATH
+ $\vec R = -2\vec N\times \vec V.\vec N +\vec V$
+ -->
+<img width="340" height="74" align="MIDDLE" border="0" src="./rt8_files/img48.png" alt="$ \ Vec R = -2 \ vec N \ times \ vec V \ vec N + \ vec V $">
+
+<br> 
+ <i><font></font></i><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt8_files/img7.png" alt="$ P $"><font></font><img width="34" height="37" align="BOTTOM" border="0" src="./rt8_files/img49.png" alt="$ \ Vec R $"><font></font><br><font></font><br><font></font><br><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt8_files/img7.png" alt="$ P $"><font></font><font size="-2"><font></font></font>
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Mirror mirror on the wall ...</font></font></font>
+	
+</div>
+
+<p>
+ <img width="781" height="362" align="BOTTOM" border="0" src="./rt8_files/img94.png" alt="\ Includegraphics [height = 8cm] {} reflexion.eps">
+
+</p><p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ So we henceforth 2 colors for our point P:
+
+ </font></font><br><font><font>
+that from the object itself (with light) and that
+
+ </font></font><br><font><font>
+of the reflected beam. </font><font>Are combined as follows:
+
+ </font><font size="-2"><font>103</font></font></font><br> 
+ <!-- MATH
+ $rouge = rouge_{reflechi}\times reflexion + rouge_{objet}\times (1 - reflexion)$
+ -->
+<img width="981" height="62" align="MIDDLE" border="0" src="./rt8_files/img50.png" alt="Red = $ {rouge_ reflechi} \ times {object reflection rouge_ +} \ times (1 - reflection) $">
+
+	<font size="-2"><font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Transparency</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ This is to achieve a transparent effect (you guessed?)
+
+	   </font><font>
+	 
+ As for reflection, a constant </font><i><font>transparency</font></i><font> between
+
+ </font><font>and </font><font>characterize this property to our objects.
+
+	   </font><font>
+	 
+ Here, too, we will go through the calculation of a `` transmitted beam '':
+
+ </font><font>where </font><font>and </font><font>are the refractive indices of
+
+ </font><font>
+different backgrounds, </font><font>and </font><font>being in the middle index </font><font>.
+
+	   </font><font>
+	 
+ Our vectors must be unitary. </font><font>In case the part under
+
+ </font><font>
+the square root is negative, it will be considered the void.
+
+	   </font><font>
+	 
+ The refractive index of air is </font><font>. </font><font>We already have good
+
+ </font><font>
+results with objects having similar indices: </font><font>or </font><font>.
+
+	 </font><font size="-2"><font>104</font></font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><i><font></font></i><font></font><br> 
+ <img width="28" height="31" align="BOTTOM" border="0" src="./rt8_files/img13.png" alt="$ 0"><font></font><img width="28" height="30" align="BOTTOM" border="0" src="./rt8_files/img12.png" alt="$ 1"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br> 
+ <!-- MATH
+ $\vec T = n\times \vec V + \left( n\times \vec V.\vec N - \sqrt{(1 + n^2((\vec V.\vec N)^2-1))} \right)\times \vec N$
+ -->
+<img width="862" height="95" align="MIDDLE" border="0" src="./rt8_files/img51.png" alt="$ \ Vec T = n \ times \ vec V + \ left (n \ times \ vec V \ vec N - \ sqrt {(1 + n ^ 2 ((\ vec V \ vec N) ^ 2-1) )} \ right) \ times \ vec N $">
+
+<br> 
+ <!-- MATH
+ $n = \frac{n_2}{n_1}$
+ -->
+<img width="114" height="65" align="MIDDLE" border="0" src="./rt8_files/img52.png" alt="$ N = \ frac {} {n_2 n_1} $"><font></font><img width="48" height="31" align="BOTTOM" border="0" src="./rt8_files/img53.png" alt="$ N1 $"><font></font><img width="48" height="31" align="BOTTOM" border="0" src="./rt8_files/img54.png" alt="$ N2"><font></font><br><font></font><img width="35" height="37" align="BOTTOM" border="0" src="./rt8_files/img55.png" alt="$ \ Vec V $"><font></font><img width="38" height="36" align="BOTTOM" border="0" src="./rt8_files/img14.png" alt="$ \ Vec N $"><font></font><img width="46" height="62" align="MIDDLE" border="0" src="./rt8_files/img56.png" alt="$ N_1"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><img width="28" height="30" align="BOTTOM" border="0" src="./rt8_files/img12.png" alt="$ 1"><font></font><br><font></font><img width="57" height="31" align="BOTTOM" border="0" src="./rt8_files/img57.png" alt="$ 0.9"><font></font><img width="57" height="30" align="BOTTOM" border="0" src="./rt8_files/img58.png" alt="$ 1.1 $"><font></font><font size="-2"><font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Ajax windows</font></font></font>
+	
+</div>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ Again, recursively, we calculate the `` color seen '
+
+ </font></font><br><font><font>
+from the point </font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt8_files/img7.png" alt="$ P $"><font><font>in the direction </font></font><img width="33" height="36" align="BOTTOM" border="0" src="./rt8_files/img59.png" alt="$ \ Vec T $"><font><font>.
+
+</font></font><p>
+ <img width="421" height="323" align="BOTTOM" border="0" src="./rt8_files/img95.png" alt="\ Includegraphics [height = 8cm] {} transp.eps">
+
+</p><p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ The combination of original color / transmitted is done on
+
+ </font></font><br><font><font>
+the same principle as the reflection:
+
+</font></font><br> 
+ <!-- MATH
+ $rouge = rouge_{transmis}\times transparence + rouge_{objet}\times (1 - transparence)$
+ -->
+<img width="1103" height="62" align="MIDDLE" border="0" src="./rt8_files/img60.png" alt="Red = $ {rouge_ transmitted} \ times transparency rouge_ + {object} \ times (1 - transparency) $">
+
+</p><p>
+
+	<font size="-2"><font><font>105</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Changing shadows</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ The shadows on objects will become a little more
+
+ </font></font><br><font><font>
+complicated to treat (but not </font></font><i><font><font>much</font></font></i><font><font> more complex).
+
+	   </font><font>
+	 
+ The case is: between my subject </font><font>and my spot </font><font>,
+
+ </font><font>
+there is an object </font><font>. </font><font>The only snag </font><font>is transparent, almost.
+
+ </font><font>
+Logic would therefore my subject </font><font>almost as much
+
+ </font><font> 
+ informed that there was not </font><font>.
+
+	   </font><font>
+	 
+ To solve this problem, we will calculate a coefficient
+
+ </font><font>
+of transparency </font><font>global to all objects between </font><font>and </font><font>.
+
+ </font><font>
+This will be the product of all the coefficients of items:
+
+ </font><font>.
+
+	   </font><font>
+	 
+ If there are no objects or all objects are completely
+
+ </font><font>
+transparent </font><font>. </font><font>For moderately transparent objects
+
+ </font><font>approaches </font><font>. </font><font>Finally, when an object is completely
+
+ </font><font>
+opaque, its coefficient is zero and therefore </font><font>, whatever
+
+ </font><font>
+other objects.
+
+	 </font><font size="-2"><font>106</font></font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt8_files/img5.png" alt="$ A $"><font></font><img width="31" height="31" align="BOTTOM" border="0" src="./rt8_files/img2.png" alt="$ S $"><font></font><br><font></font><img width="35" height="30" align="BOTTOM" border="0" src="./rt8_files/img4.png" alt="$ B $"><font></font><img width="35" height="30" align="BOTTOM" border="0" src="./rt8_files/img4.png" alt="$ B $"><font></font><br><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt8_files/img5.png" alt="$ A $"><font></font><br><font></font><img width="35" height="30" align="BOTTOM" border="0" src="./rt8_files/img4.png" alt="$ B $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><img width="34" height="62" align="MIDDLE" border="0" src="./rt8_files/img61.png" alt="$ C_t"><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt8_files/img5.png" alt="$ A $"><font></font><img width="31" height="31" align="BOTTOM" border="0" src="./rt8_files/img2.png" alt="$ S $"><font></font><br><font></font><br> 
+ <!-- MATH
+ $c_t = 1 \times B_t \times C_t \times ...$
+ -->
+<img width="326" height="62" align="MIDDLE" border="0" src="./rt8_files/img62.png" alt="$ C_t = 1 \ times b_t \ times C_T \ times $ ..."><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><img width="103" height="62" align="MIDDLE" border="0" src="./rt8_files/img63.png" alt="$ 1 = $ c_t"><font></font><br> 
+ <img width="34" height="62" align="MIDDLE" border="0" src="./rt8_files/img61.png" alt="$ C_t"><font></font><img width="28" height="31" align="BOTTOM" border="0" src="./rt8_files/img13.png" alt="$ 0"><font></font><br><font></font><img width="103" height="62" align="MIDDLE" border="0" src="./rt8_files/img64.png" alt="$ C_t = $ 0"><font></font><br><font></font><font size="-2"><font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Shadows and transparency</font></font></font>
+	
+</div>
+
+ <img width="659" height="542" align="BOTTOM" border="0" src="./rt8_files/img96.png" alt="\ Includegraphics [height = 12cm] {} ombtra.eps">
+
+	<font size="-2"><font><font>107</font></font></font>
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Synthesis of the color of an object</font></font></font>
+	
+</div>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ We will finally integrate in one go
+
+ </font></font><br><font><font> 
+ - brightness
+
+ </font></font><br><font><font> 
+ - brightness
+
+ </font></font><br><font><font> 
+ - shadows
+
+	   </font><font>
+	 
+ the first two effects have already been grouped
+
+ </font><font>
+in the same formula:
+
+ </font><font>
+	 
+ Our overall transparency coefficient </font><font>is used to
+
+ </font><font>
+change the amount of light that reaches the spot . the object
+
+ </font><font>
+is going to multiply </font><font>:
+
+ </font><font size="-2"><font>108</font></font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br> 
+ <!-- MATH
+ $new\_rouge2 = rouge\times cos(a) \times  \frac{rouge_{spot}}{rouge_{MAX}} + brillance \times rouge_{spot} \times cos(a)$
+ -->
+<img width="1123" height="72" align="MIDDLE" border="0" src="./rt8_files/img65.png" alt="New $ \ _rouge2 = red \ times cos (a) \ times \ frac {{rouge_ Spot}} {{MAX}} rouge_ + shine \ times {rouge_ spot} \ times cos (a) $">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><img width="34" height="62" align="MIDDLE" border="0" src="./rt8_files/img61.png" alt="$ C_t"><font></font><br><font></font><br><font></font><img width="144" height="62" align="MIDDLE" border="0" src="./rt8_files/img66.png" alt="$ Rouge_} $ {spot"><font></font><br> 
+ <!-- MATH
+ $new\_rouge2 = ( \frac{rouge}{rouge_{MAX}} + brillance ) \times rouge_{spot} \times cos(a) \times c_t$
+ -->
+<img width="960" height="65" align="MIDDLE" border="0" src="./rt8_files/img67.png" alt="New $ \ _rouge2 = (\ frac {red} {rouge_ {MAX}} + brightness) \ times {rouge_ spot} \ times cos (a) \ times $ c_t">
+
+	<font size="-2"><font></font></font>
+
+<p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Direct light</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ Watch a spot face, you are dazzled. </font><font>Our
+
+ </font></font><br><font><font>
+current model of Raytracer does not handle this.
+
+	   </font><font>
+	 
+ Let's break down the phenomenon
+
+ </font><font> 
+ - more one looks at a point near the spot, the color
+
+ </font><font>
+perceived is lively and close to that of the spot.
+
+ </font><font> 
+ - the more you look away direction of the spot, less
+
+ </font><font>
+the final color depends on the spot.
+
+	   </font><font>
+	 
+ We get the angle between our view vector </font><font>
+and the vector </font><font>. </font><font>More from this angle, the smaller one
+
+ </font><font>
+is dazzled. </font><font>The </font><font>angle will serve to involve
+
+ </font><font>
+the light spot on the eye.
+
+	   </font><font>
+	 
+ The direct light can be understood as the brightness
+
+ </font><font>
+created by a spotlight on our eye.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><img width="35" height="37" align="BOTTOM" border="0" src="./rt8_files/img55.png" alt="$ \ Vec V $">
+
+<br><font></font><img width="94" height="38" align="BOTTOM" border="0" src="./rt8_files/img68.png" alt="$ \ Vec {S} $ Eye"><font></font><br><font></font><img width="55" height="31" align="BOTTOM" border="0" src="./rt8_files/img69.png" alt="Cos $ $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>109</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>We have the means ...</font></font></font>
+	
+</div>
+
+ <img width="388" height="360" align="BOTTOM" border="0" src="./rt8_files/img97.png" alt="\ Includegraphics [height = 8cm] {} lumdirect.eps">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ Please do not forget to bring in here too (like
+
+ </font></font><br><font><font>
+brightness) a coefficient of transparency </font></font><img width="34" height="62" align="MIDDLE" border="0" src="./rt8_files/img61.png" alt="$ C_t"><font><font>of objects that
+
+ </font></font><br><font><font>
+might be found between the eye and the spot. </font><font>Be dazzled by
+
+ </font></font><br><font><font>
+a hidden spot, it's not great!
+
+	   </font><font>
+	 
+ The easiest being of course to reuse the same function
+
+ </font><font>
+as the brightness.
+
+	 </font><font size="-2"><font>110</font></font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><font size="-2"><font></font></font>
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>After reflection and transparency</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ What will happen when you look at a light source
+
+ </font></font><br><font><font>
+in a mirror? </font><font>You have an important shine.
+
+	   </font><font>
+	 
+ Similarly, when a spot is behind an object
+
+ </font><font>
+relatively transparent, you have been through
+
+ </font><font>
+a luminous glow.
+
+	   </font><font>
+	 
+ How to account for this?
+
+ </font><font>
+By trusting his code!
+
+	   </font><font>
+	 
+ Indeed : to involve reflection (or transparency),
+
+ </font><font>
+we wondered `What color do you see if the eye is </font><font>
+and looks after </font><font>''?
+
+ </font><font>
+The code to calculate the color seen by the eye was
+
+ </font><font>
+reused recursively.
+
+ </font><font>
+If it includes the `` direct light effect '', the point </font><font>
+after watching </font><font>will be dazzled, and forward this
+
+ </font><font>
+effect to our eye.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt8_files/img7.png" alt="$ P $">
+
+<br><font></font><img width="34" height="37" align="BOTTOM" border="0" src="./rt8_files/img49.png" alt="$ \ Vec R $"><font></font><br><font></font><br><font></font><br><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt8_files/img7.png" alt="$ P $">
+
+<br><font></font><img width="34" height="37" align="BOTTOM" border="0" src="./rt8_files/img49.png" alt="$ \ Vec R $"><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>111</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Direct reflection</font></font></font>
+	
+</div>
+
+ <img width="574" height="361" align="BOTTOM" border="0" src="./rt8_files/img98.png" alt="\ Includegraphics [height = 8cm] {} lumreftran.eps">
+
+	<font size="-2"><font><font>112</font></font></font>
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Synthesis of the pixel color</font></font></font>
+	
+</div>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ We can now bring all the elements
+
+ </font></font><br><font><font>
+involved in the development of the color of the pixel.
+
+	   </font><font>
+	 
+ So we have the following four categories:
+
+ </font><font> 
+ - The color of the object modified brightness, brightness
+
+ </font><font>
+and shadows, taking into account transparency effects
+
+ </font><font> 
+ - The color after reflection
+
+ </font><font> 
+ - The color issue of transparency
+
+ </font><font> 
+ - Direct light
+
+	   </font><font>
+	 
+ These four components can simply be added
+
+ </font><font>
+as it is common only prevail over others. </font><font>To you to
+
+ </font><font>
+adjust your colors and intensities of spots not to get
+
+ </font><font>
+too much saturation effects.
+
+	 </font><font size="-2"><font>113</font></font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt8_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><font size="-2"><font></font></font>
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Total</font></font></font>
+	
+</div>
+
+ <img width="704" height="540" align="BOTTOM" border="0" src="./rt8_files/img99.png" alt="\ Includegraphics [height = 12cm] {} lumieretotal.eps">
+
+	<font size="-2"><font><font>114</font></font></font>
+
+<p>
+<br></p><hr><font><font>
+Ol - IGRAPH tek1 - January 22, 2002 - Converted by LaTeX2HTML </font></font><br><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./rt8_files/translate-32.png" width="20" height="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div>
+
+
+</body></html>

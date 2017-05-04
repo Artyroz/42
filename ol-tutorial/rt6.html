@@ -1,0 +1,697 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!-- saved from url=(0065)http://perso.epitech.eu/~ol/work/raytracer/cours/cours/rt3-6.html -->
+<html class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>rt3</title>
+<meta name="description" content="rt3">
+<meta name="keywords" content="rt3">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+
+<meta name="Generator" content="LaTeX2HTML v2K.1beta">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="./rt6_files/translateelement.css"></head>
+
+<body bgcolor="white">
+
+<center>
+<h1><font><font>Basic computer graphics - Epitech1</font></font></h1><br><font><font>
+Part Three - Course 6
+</font></font></center>
+
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Detour matrices</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ A matrix is a way to represent a transformation
+
+ </font></font><br><font><font>
+of one element in a space </font></font><img width="20" height="31" align="BOTTOM" border="0" src="./rt6_files/img34.png" alt="$ I $"><font><font>dimensions of an element
+
+ </font></font><br><font><font>
+in a space </font></font><img width="24" height="62" align="MIDDLE" border="0" src="./rt6_files/img35.png" alt="$ J $"><font><font>dimensions.
+
+	   </font><font>
+	 
+ All possible transformations can not necessarily
+
+ </font><font>
+be expressed in a matrix.
+
+	   </font><font>
+	 
+ A matrix thus represents:
+
+ </font><font>   with </font><font>.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><br> 
+ <!-- MATH
+ $M = \left. \left( \underbrace{ \begin{array}{ccccc}
+m_{11}&m_{21}&m_{31}&\ldots&m_{i1}\\
+m_{12}&m_{22}&m_{32}&\ldots&m_{i2}\\
+\ldots&&&&\\
+m_{1j}&m_{2j}&m_{3j}&\ldots&m_{ij}\\
+\end{array}
+}_{i} \right)  \right\} j$
+ -->
+<img width="599" height="260" align="MIDDLE" border="0" src="./rt6_files/img36.png" alt="$ M = \ left.  \ Left (\ underbrace {\ begin {array} {} ccccc m_ m_ {11} {21} &amp; &amp; m_ {31} &amp; \ ldots \\ &amp;&amp; ... ... m_ {1d} &amp; {2j} &amp; m_ m_ {3d} &amp; \ ldots m_ {ij} &amp; \\ \ end {array}} _ {i} \ right) \ right \} $ j"><font></font><!-- MATH
+ $m_{11}, \ldots, m_{ij}  \epsilon  \Re$
+ -->
+<img width="238" height="62" align="MIDDLE" border="0" src="./rt6_files/img37.png" alt="$ M_ {11}, \ ldots, m_ {ij} \ epsilon \ Re $"><font></font></p><p>
+
+	<font size="-2"><font><font>70</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>The elements to transform</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ The elements of a dimension space </font></font><img width="29" height="31" align="BOTTOM" border="0" src="./rt6_files/img38.png" alt="$ N $"><font><font>will also have
+
+ </font></font><br><font><font>
+a representation in matrix form:
+
+ </font></font><br><font><font>
+a point </font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt6_files/img39.png" alt="$ A $"><font><font>: </font><font>.
+
+ </font><font>
+It is simply the </font><font>coordinates of the point.
+
+</font></font><!-- MATH
+ $\left( \begin{array}{c} a_1\\a_2\\\ldots \\a_n\\\end{array} \right)$
+ -->
+<img width="121" height="181" align="MIDDLE" border="0" src="./rt6_files/img40.png" alt="$ \ Left (\ begin {array} {c} a_1 a_2 \\ \\ \ ldots a_n \\ \\ \ end {array} \ right) $"><font></font><br><font></font><img width="29" height="31" align="BOTTOM" border="0" src="./rt6_files/img38.png" alt="$ N $"><font></font></p><p>
+
+	<font size="-2"><font><font>71</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Matrix multiplication</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ It is in this way is called the calculation of the new
+
+ </font></font><br><font><font> 
+ member from the first member and the matrix
+
+ </font></font><br><font><font>
+transformation. </font><font>We note this as a multiplication:
+
+ </font><font>.
+
+	   </font><font>
+	 
+ Principle of matrix multiplication:
+
+</font></font><br> 
+ <img width="152" height="31" align="BOTTOM" border="0" src="./rt6_files/img41.png" alt="$ A = $ MA"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><br> 
+ <table cellpadding="3">
+<tbody><tr><td align="CENTER">&nbsp;</td>
+<td align="CENTER"><!-- MATH
+ $\left( \begin{array}{c} a_1\\a_2\\\end{array} \right)$
+ -->
+<img width="112" height="111" align="MIDDLE" border="0" src="./rt6_files/img42.png" alt="$ \ Left (\ begin {array} {c} a_1 a_2 \\ \\ \ end {array} \ right) $"></td>
+<td align="CENTER">&nbsp;</td>
+</tr>
+<tr><td align="CENTER"><!-- MATH
+ $\left( \begin{array}{cc}
+m_{11}&m_{21}\\
+m_{12}&m_{22}\\
+\end{array} \right)$
+ -->
+<img width="230" height="111" align="MIDDLE" border="0" src="./rt6_files/img43.png" alt="$ \ Left (\ begin {array} {cc} m_ m_ {11} {21} &amp; \\ &amp; m_ m_ {12} {22} \\ \ end {array} \ right) $"></td>
+<td align="CENTER"><!-- MATH
+ $\left(  \begin{array}{c}
+a_1m_{11}+a_2m_{21}\\a_1m_{12}+a_2m_{22}\\\end{array} \right)$
+ -->
+<img width="321" height="111" align="MIDDLE" border="0" src="./rt6_files/img44.png" alt="$ \ Left (\ begin {array} {c} {11} + a_1m_ a_2m_ {21} {12} \\ a_1m_ + a_2m_ {22} \\ \ end {array} \ right) $"></td>
+<td align="CENTER"><img width="82" height="31" align="BOTTOM" border="0" src="./rt6_files/img45.png" alt="$ = A $"></td>
+</tr>
+</tbody></table>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ We realize that the calculation </font></font><img width="69" height="30" align="BOTTOM" border="0" src="./rt6_files/img46.png" alt="$ AM $"><font><font>is impossible: the
+
+ </font></font><br><font><font>
+matrix multiplication is not commutative.
+
+</font></font></p><p>
+
+	<font size="-2"><font><font>72</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>... Also between transformations</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ When one wants to make changes to an item 2
+
+ </font></font><br><font><font>
+successive by the matrix </font></font><img width="44" height="30" align="BOTTOM" border="0" src="./rt6_files/img47.png" alt="$ M $"><font><font>and the matrix </font></font><img width="38" height="30" align="BOTTOM" border="0" src="./rt6_files/img48.png" alt="$ N $"><font><font>, we can write
+
+ </font><font>then </font><font>.
+
+ </font><font>
+This gives us </font><font>(attention to the order !!)
+
+	   </font><font>
+	 
+ Then there exists a matrix </font><font>such that:
+
+ </font><font>.
+
+	   </font><font>
+	 
+ The calculation of </font><font>s' obtained by matrix multiplication:
+
+</font></font><br> 
+ <img width="152" height="31" align="BOTTOM" border="0" src="./rt6_files/img41.png" alt="$ A = $ MA"><font></font><img width="163" height="31" align="BOTTOM" border="0" src="./rt6_files/img49.png" alt="$ A &#39;&#39; = NA &#39;$"><font></font><br><font></font><img width="190" height="31" align="BOTTOM" border="0" src="./rt6_files/img50.png" alt="$ A &#39;= $ NMA"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt6_files/img2.png" alt="$ P $"><font></font><br> 
+ <img width="150" height="31" align="BOTTOM" border="0" src="./rt6_files/img51.png" alt="$ A &#39;$ = PA"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt6_files/img2.png" alt="$ P $"><font></font><br> 
+ <table cellpadding="3">
+<tbody><tr><td align="CENTER">&nbsp;</td>
+<td align="CENTER"><!-- MATH
+ $\left( \begin{array}{cc}
+m_{11}&m_{21}\\m_{12}&m_{22}\\
+\end{array} \right)$
+ -->
+<img width="230" height="111" align="MIDDLE" border="0" src="./rt6_files/img43.png" alt="$ \ Left (\ begin {array} {cc} m_ m_ {11} {21} &amp; \\ &amp; m_ m_ {12} {22} \\ \ end {array} \ right) $"></td>
+<td align="CENTER">&nbsp;</td>
+</tr>
+<tr><td align="CENTER"><!-- MATH
+ $\left( \begin{array}{cc}
+n_{11}&n_{21}\\n_{12}&n_{22}\\
+\end{array} \right)$
+ -->
+<img width="211" height="111" align="MIDDLE" border="0" src="./rt6_files/img52.png" alt="$ \ Left (\ begin {array} {cc} No {11} {21} &amp; \\ No No No &amp; {12} {22} \\ \ end {array} \ right) $"></td>
+<td align="CENTER"><!-- MATH
+ $\left(  \begin{array}{cc}
+m_{11}n_{11}+m_{12}n_{21} & m_{21}n_{11}+m_{22}n_{21}\\
+m_{11}n_{12}+m_{12}n_{22} & m_{21}n_{12}+m_{22}n_{22}\\
+\end{array} \right)$
+ -->
+<img width="658" height="111" align="MIDDLE" border="0" src="./rt6_files/img53.png" alt="$ \ Left (\ begin {array} {cc} m_ {11} {11} No + m_ {12} {21} No &amp; No m_ {21} {11} + m_ {22} {21} \\ No m_ {11} {12} No + m_ {12} {22} No &amp; No m_ {21} {12} + m_ {22} {22} No \\ \ end {array} \ right) $"></td>
+<td align="CENTER"><img width="75" height="30" align="BOTTOM" border="0" src="./rt6_files/img54.png" alt="= $ P $"></td>
+</tr>
+</tbody></table>
+
+</p><p>
+
+	<font size="-2"><font><font>73</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>In practice</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ We shall have to deal only if
+
+ </font></font><br><font><font>
+the point / 3D vector </font></font><img width="42" height="31" align="BOTTOM" border="0" src="./rt6_files/img7.png" alt="$ \ To $"><font><font>points / 3D vector.
+
+	   </font><font>
+	 
+ Our transformation matrices will be as many
+
+ </font><font>
+rows as columns: they are square matrices ``. ''
+
+	   </font><font>
+	 
+ We will work with matrices </font><font>.
+
+	   </font><font>
+	 
+ These are essentially the 3 rotation matrices in
+
+ </font><font>
+the space that we will use.
+
+	   </font><font>
+	 
+ The matrix concept is frequently used in
+
+ </font><font>
+graphics software market.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><img width="89" height="62" align="MIDDLE" border="0" src="./rt6_files/img55.png" alt="$ 3 \ $ times3"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>74</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>The classics</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ The `` identity matrix 'which leaves unchanged our components:
+
+ </font><font>Ex: </font><font>
+	 
+ Rotation about the axis </font><font>by an angle </font><font>:
+
+ </font><font>
+	 
+ Rotation about the axis </font><font>by an angle </font><font>:
+
+ </font><font>
+	 
+ Rotation about the axis </font><font>by an angle </font><font>:
+
+</font></font><br> 
+ <!-- MATH
+ $I = \left( \begin{array}{ccc} 1&0&0\\0&1&0\\0&0&1\\\end{array} \right)$
+ -->
+<img width="259" height="143" align="MIDDLE" border="0" src="./rt6_files/img56.png" alt="$ I = \ left (\ begin {array} {ccc} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ \ end {array} \ right) $"><font></font><img width="217" height="30" align="BOTTOM" border="0" src="./rt6_files/img57.png" alt="$ IA = AI = A $">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><img width="27" height="31" align="BOTTOM" border="0" src="./rt6_files/img6.png" alt="$ X $"><font></font><img width="41" height="62" align="MIDDLE" border="0" src="./rt6_files/img58.png" alt="$ \ $ Theta_x"><font></font><br> 
+ <!-- MATH
+ $R_{x} = \left( \begin{array}{ccc}
+1&0&0\\0&cos(\theta_x)&-sin(\theta_x)\\0&sin(\theta_x)&cos(\theta_x)\\
+\end{array} \right)$
+ -->
+<img width="491" height="143" align="MIDDLE" border="0" src="./rt6_files/img59.png" alt="$ R_ {x} = \ left (\ begin {array} {ccc} 1 &amp; 0 &amp; 0 \\ 0 &amp; cos (\ theta_x) &amp; - sin (\ theta_x) \\ 0 &amp; sin (\ theta_x) &amp; cos (\ theta_x) \\ \ end {array } \ right) $">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><img width="26" height="62" align="MIDDLE" border="0" src="./rt6_files/img60.png" alt="$ Y $"><font></font><img width="40" height="62" align="MIDDLE" border="0" src="./rt6_files/img61.png" alt="$ \ $ Theta_y"><font></font><br> 
+ <!-- MATH
+ $R_{y} = \left( \begin{array}{ccc}
+cos(\theta_y)&0&sin(\theta_y)\\0&1&0\\-sin(\theta_y)&0&cos(\theta_y)\\
+\end{array} \right)$
+ -->
+<img width="488" height="143" align="MIDDLE" border="0" src="./rt6_files/img62.png" alt="$ R_ {y} = \ left (\ begin {array} {ccc} cos (\ theta_y) &amp; 0 &amp; sin (\ theta_y) \\ 0 &amp; 1 &amp; 0 \\ -sin (\ theta_y) &amp; 0 &amp; cos (\ theta_y) \\ \ end {array} \ right) $">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><img width="25" height="31" align="BOTTOM" border="0" src="./rt6_files/img63.png" alt="$ Z $"><font></font><img width="39" height="62" align="MIDDLE" border="0" src="./rt6_files/img64.png" alt="$ \ $ Theta_z"><font></font><br> 
+ <!-- MATH
+ $R_{z} = \left( \begin{array}{ccc}
+cos(\theta_z)&-sin(\theta_z)&0\\sin(\theta_z)&cos(\theta_z)&0\\0&0&1\\
+\end{array} \right)$
+ -->
+<img width="486" height="143" align="MIDDLE" border="0" src="./rt6_files/img65.png" alt="$ R_ {z} = \ left (\ begin {array} {ccc} cos (\ theta_z) &amp; - sin (\ theta_z) &amp; 0 \\ sin (\ theta_z) &amp; cos (\ theta_z) &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ \ end {array} \ right) $">
+
+</p><p>
+
+	<font size="-2"><font><font>75</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Back on topic</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ Why do these matrices?
+
+	   </font><font>
+	 
+ We have already seen, to turn our eyes and therefore
+
+ </font><font>
+our management vision.
+
+	   </font><font>
+	 
+ But going a step further.
+
+ </font><font>
+Suppose we want to in our scene a new
+
+ </font><font>
+plan, but this time a plan to us and looked a bit
+
+ </font><font>
+doite. </font><font>Logic suggests that one operates in the manner
+
+ </font><font>
+following:
+
+ </font><font> 
+ - Research of the equation of our plan
+
+ </font><font> 
+ - Calculation of intersection with a straight
+
+	   </font><font>
+	 
+ The first point can be very tedious for plans
+
+ </font><font>
+whatsoever. </font><font>For the second, it will create a function
+
+ </font><font>
+Generic able to calculate the intersections for
+
+ </font><font>
+plans and any straight. </font><font>Many calculations and case
+
+ </font><font>
+specific perspective.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><br><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>76</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Draw me a sheep</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ It was really easy with our plan </font></font><img width="95" height="31" align="BOTTOM" border="0" src="./rt6_files/img30.png" alt="$ Z = $ 0"><font><font>. </font><font>That is
+
+ </font></font><br><font><font>
+why we will bring us back to this case. </font><font>All the plans
+
+ </font></font><br><font><font>
+of the space can be described as a rotation and a
+
+ </font></font><br><font><font>
+translation of our plan </font></font><img width="95" height="31" align="BOTTOM" border="0" src="./rt6_files/img30.png" alt="$ Z = $ 0"><font><font>.
+
+	   </font><font>
+	 
+ To describe our scene, a plan will be characterized
+
+ </font><font>
+by an origin (determining a translation relative
+
+ </font><font> 
+ to </font><font>the origin of the plane </font><font>) and 3 angles for
+
+ </font><font>
+rotations along the 3 axis.
+
+	   </font><font>
+	 
+ But these data will not be used to modify the plan:
+
+ </font><font>
+that is, we will not try to find an equation
+
+ </font><font>
+. This plan described in our scene
+
+ </font><font>
+we want to use our function of intersection with the
+
+ </font><font>
+plane </font><font>. </font><font>We must return in this case.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><img width="128" height="62" align="MIDDLE" border="0" src="./rt6_files/img4.png" alt="$ (0,0,0) $"><font></font><img width="95" height="31" align="BOTTOM" border="0" src="./rt6_files/img30.png" alt="$ Z = $ 0"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><br><font></font><img width="95" height="31" align="BOTTOM" border="0" src="./rt6_files/img30.png" alt="$ Z = $ 0"><font></font></p><p>
+
+	<font size="-2"><font><font>77</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>The principle established</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ All objects in our scene will therefore be described as
+
+ </font></font><br><font><font> 
+ simple geometric elements in a `` single '' position
+
+ </font></font><br><font><font> 
+ (centered in </font></font><img width="128" height="62" align="MIDDLE" border="0" src="./rt6_files/img4.png" alt="$ (0,0,0) $"><font><font>along an axis ...), will be applied auquels
+
+ </font></font><br><font><font>
+3 rotations and one translation, to get into position `` real ''.
+
+	   </font><font>
+	 
+ All of intersection calculations for a straight vision
+
+ </font><font>
+and an object, will be in reducing our position in single object,
+
+ </font><font>
+through a reverse translation and 3 reverse rotations.
+
+	   </font><font>
+	 
+ This series of transformations from the subject of its position
+
+ </font><font>
+in its actual position will also simply be applied to
+
+ </font><font>
+our eye and right of our vision. </font><font>The object and the eye remain
+
+ </font><font>
+stationary relative to one another.
+
+	   </font><font>
+	 
+ The clean intersection functions to each object are therefore
+
+ </font><font>
+easier to find and to be encoded. </font><font>The functions performing the
+
+ </font><font>
+rotation and translation will be unique, and used for
+
+ </font><font>
+all objects.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>78</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>And the final result</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ The calculation of intersection gives us </font></font><img width="27" height="31" align="BOTTOM" border="0" src="./rt6_files/img29.png" alt="$ K $"><font><font>the distance between our
+
+ </font></font><br><font><font>
+eye and the point of instersection P. We also obtain the coordinates
+
+ </font><font>of the intersection.
+
+	   </font><font>
+	 
+ Only we are still single position: For
+
+ </font><font>
+the true coordinates of the intersection, we be the
+
+ </font><font>
+turn by 3 rotations and translation of the object
+
+ </font><font> 
+ (not the inverse transformation this time!).
+
+	   </font><font>
+	 
+ The distance </font><font>does not change between simple position and the
+
+ </font><font>
+actual position of the object. </font><font>No more calculations to do.
+
+	   </font><font>
+	 
+ When calculating the intersection with the next object in our
+
+ </font><font>
+scene, do not forget to take the actual coordinates of
+
+ </font><font>
+the eye. </font><font>Temporary coordinates obtained using an object
+
+ </font><font>
+singles position are no longer of any use.
+
+</font></font><br> 
+ <img width="151" height="62" align="MIDDLE" border="0" src="./rt6_files/img66.png" alt="$ (X_p, y_p, z_p) $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><img width="27" height="31" align="BOTTOM" border="0" src="./rt6_files/img29.png" alt="$ K $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>79</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Other simple objects</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ The cylinder: as in our sphere or our map, we perform
+
+ </font></font><br><font><font>
+rotations and translations to return to the case of a cylinder
+
+ </font></font><br><font><font>
+centered </font></font><img width="128" height="62" align="MIDDLE" border="0" src="./rt6_files/img4.png" alt="$ (0,0,0) $"><font><font>on the axis of and </font></font><img width="25" height="31" align="BOTTOM" border="0" src="./rt6_files/img63.png" alt="$ Z $"><font><font>. </font><font>His equation is
+
+ </font></font><br><font><font>
+then the shape </font><font>, </font><font>being the radius of the cylinder.
+
+ </font><font>
+The calculation of the intersection and </font><font>is made &#8203;&#8203;as to the sphere.
+
+	   </font><font>
+	 
+ The cone is reduces to the case of the cone centered </font><font>
+on the axis of </font><font>. </font><font>The equation is of the form:
+
+ </font><font>. </font><font>The </font><font>sets the opening
+
+ </font><font>
+of the cone.
+
+</font></font><!-- MATH
+ $x^2 + y^2 = R^2$
+ -->
+<img width="218" height="69" align="MIDDLE" border="0" src="./rt6_files/img67.png" alt="$ X ^ 2 + y ^ 2 = R ^ 2 $"><font></font><img width="34" height="31" align="BOTTOM" border="0" src="./rt6_files/img68.png" alt="$ R $"><font></font><br><font></font><img width="27" height="31" align="BOTTOM" border="0" src="./rt6_files/img29.png" alt="$ K $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt6_files/img1.png" alt="$ \ Bullet $"><font></font><img width="128" height="62" align="MIDDLE" border="0" src="./rt6_files/img4.png" alt="$ (0,0,0) $">
+
+<br><font></font><img width="25" height="31" align="BOTTOM" border="0" src="./rt6_files/img63.png" alt="$ Z $"><font></font><br> 
+ <!-- MATH
+ $x^2 + y^2 - cte\times z^2 = 0$
+ -->
+<img width="354" height="69" align="MIDDLE" border="0" src="./rt6_files/img69.png" alt="$ X ^ 2 + y ^ 2 - ct \ times z ^ 2 = $ 0"><font></font><img width="51" height="31" align="BOTTOM" border="0" src="./rt6_files/img70.png" alt="$ $ Coast"><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>80</font></font></font>
+
+</p><p>
+
+</p><p>
+
+        </p><div align="CENTER">
+<font size="+2"><font><font>Small illustrated RT - 1</font></font></font>
+
+</div>
+
+<p>
+ <img width="1003" height="709" align="BOTTOM" border="0" src="./rt6_files/img74.png" alt="\ Includegraphics [height = 16cm] {rt-rot-oeil.eps}">
+
+</p><p>
+
+        <font size="-2"><font><font>81</font></font></font>
+
+</p><p>
+
+
+</p><p>
+
+        </p><div align="CENTER">
+<font size="+2"><font><font>Small illustrated RT - 2</font></font></font>
+
+</div>
+
+<p>
+ <img width="909" height="723" align="BOTTOM" border="0" src="./rt6_files/img75.png" alt="\ Includegraphics [height = 16cm] {rt-rot-obj.eps}">
+
+</p><p>
+
+        <font size="-2"><font><font>82</font></font></font>
+
+</p><p>
+
+
+
+</p><p>
+
+        </p><div align="CENTER">
+<font size="+2"><font><font>Small illustrated RT - 3</font></font></font>
+
+</div>
+
+<p>
+ <img width="1078" height="438" align="BOTTOM" border="0" src="./rt6_files/img76.png" alt="\ Includegraphics [height = 10cm] {rt-rot-obj2.eps}">
+
+</p><p>
+
+        <font size="-2"><font><font>83</font></font></font>
+
+</p><p>
+
+
+<br></p><hr><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./rt6_files/translate-32.png" width="20" height="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><font><font>
+
+Ol@epita.fr - tek1 - December 17, 2001 - Converted by latex2html
+
+
+
+</font></font></body></html>

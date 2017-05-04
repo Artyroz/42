@@ -1,0 +1,19 @@
+Scene {
+	width 500
+	height 500
+	light_max 1
+
+	Camera {
+		pos 0.0 0.0 0.0
+		rot 0.0 0.0 0.0
+		fov 70.0
+		znear 0.0
+		zfar 100.0
+	}
+
+	Object {
+		type sphere
+		pos 0.0 0.0 10.0
+		color 255 000 000
+	}
+}

@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!-- saved from url=(0065)http://perso.epitech.eu/~ol/work/raytracer/cours/cours/rt2-4.html -->
+<html class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>rt2</title>
+<meta name="description" content="rt2">
+<meta name="keywords" content="rt2">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+
+<meta name="Generator" content="LaTeX2HTML v2K.1beta">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="./rt4_files/translateelement.css"></head>
+
+<body bgcolor="white">
+
+<center>
+<h1><font><font>Basic computer graphics - Epitech1</font></font></h1><br><font><font>
+Part Two - Course 4
+</font></font></center>
+
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Ray Casting - Principle</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ This is to simulate `` real-time 'type environment
+
+ </font></font><br><font><font>
+labyrinth, with a realistic view (as we could see).
+
+</font></font></p><p>
+ <img width="793" height="354" align="BOTTOM" border="0" src="./rt4_files/img57.png" alt="\ Includegraphics [height = 8cm] {} rcast1.eps">
+
+</p><p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ When traveling in the maze, the `` realistic view '
+
+ </font></font><br><font><font> 
+ is changing.
+
+	   </font><font>
+	 
+ The explained method is not the only possible method
+
+ </font><font>
+but it is the one used for the original game.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>47</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>First thoughts</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ The view is symmetrical up / down. </font><font>One has for each half
+
+ </font></font><br><font><font>
+image a half end wall and a floor or ceiling of the end.
+
+	   </font><font>
+	 
+ A </font><font>constant, and the wall is far more the half line `wall ''
+
+ </font><font>
+is small (and thus the floor or ceiling line is greater).
+
+	   </font><font>
+	 
+ Hence the principle of calculating the distance between us and the wall
+
+ </font><font>
+for each </font><font>of our image. </font><font>A vertical line is then plotted
+
+ </font><font>
+for the ceiling, followed by a vertical line to the wall and, finally,
+
+ </font><font>
+one for the bottom.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font></font><img width="27" height="31" align="BOTTOM" border="0" src="./rt4_files/img13.png" alt="$ X $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><img width="27" height="31" align="BOTTOM" border="0" src="./rt4_files/img13.png" alt="$ X $"><font></font><br><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>48</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Preliminaries</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ We will have to maintain multiple data:
+
+ </font></font><br><font><font> 
+ - description of the maze: an array of </font></font><code><font><font>int</font></font></code><font><font> filled </font></font><img width="28" height="31" align="BOTTOM" border="0" src="./rt4_files/img31.png" alt="$ 0"><font><font>and </font><font> 
+ - our position in the labyrinth </font><font> 
+ - our viewing angle:</font></font><img width="28" height="30" align="BOTTOM" border="0" src="./rt4_files/img11.png" alt="$ 1">
+
+<br><font></font><img width="130" height="62" align="MIDDLE" border="0" src="./rt4_files/img32.png" alt="$ (X0, y0) $">
+
+<br><font></font><img width="26" height="31" align="BOTTOM" border="0" src="./rt4_files/img33.png" alt="$ A $">
+
+</p><p>
+ <img width="297" height="357" align="BOTTOM" border="0" src="./rt4_files/img58.png" alt="\ Includegraphics [height = 8cm] {} rcast2.eps">
+
+</p><p>
+
+	<font size="-2"><font><font>49</font></font></font>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Straight assembly</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ For each </font></font><img width="27" height="31" align="BOTTOM" border="0" src="./rt4_files/img13.png" alt="$ X $"><font><font>of our image, we create a line passing
+
+ </font></font><br><font><font>
+by our position and slightly offset relative to
+
+ </font></font><br><font><font>
+the direction of vision. </font><font>Is obtained a range of lines.
+
+	   </font><font>
+	 
+ It uses a projection plane simulating the top view screen,
+
+ </font><font>
+represented by a line segment. </font><font>Each </font><font>of our image
+
+ </font><font>
+is a different point on this line segment. </font><font>The colon
+
+ </font><font>and </font><font>to determine a single right
+
+ </font><font>
+defined by a point </font><font>and a direction vector </font><font>.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><img width="27" height="31" align="BOTTOM" border="0" src="./rt4_files/img13.png" alt="$ X $"><font></font><br><font></font><br> 
+ <img width="130" height="62" align="MIDDLE" border="0" src="./rt4_files/img32.png" alt="$ (X0, y0) $"><font></font><img width="130" height="62" align="MIDDLE" border="0" src="./rt4_files/img34.png" alt="$ (X1, y1) $"><font></font><br><font></font><img width="130" height="62" align="MIDDLE" border="0" src="./rt4_files/img32.png" alt="$ (X0, y0) $"><font></font><img width="145" height="62" align="MIDDLE" border="0" src="./rt4_files/img35.png" alt="$ (Vx, Vy) $"><font></font></p><p>
+ <img width="657" height="309" align="BOTTOM" border="0" src="./rt4_files/img59.png" alt="\ Includegraphics [height = 8cm] {} rcast3.eps">
+
+</p><p>
+
+	<font size="-2"><font><font>50</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Computing </font></font><img width="130" height="62" align="MIDDLE" border="0" src="./rt4_files/img34.png" alt="$ (X1, y1) $"></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ For the segment size </font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt4_files/img36.png" alt="$ P $"><font><font>, the size of a box should
+
+ </font></font><br><font><font> 
+ (be taken </font></font><img width="57" height="31" align="BOTTOM" border="0" src="./rt4_files/img37.png" alt="$ 1.0 $"><font><font>as box size). </font><font>For </font></font><img width="37" height="30" align="BOTTOM" border="0" src="./rt4_files/img38.png" alt="$ D $"><font><font>the distance
+
+ </font></font><br><font><font>
+between our position and the projection segment </font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt4_files/img36.png" alt="$ P $"><font><font>, half
+
+ </font></font><br><font><font>
+box suitable.
+
+	   </font><font>
+	 
+ Let's if the viewing angle </font><font>is zero and that our
+
+ </font><font>
+position is </font><font>. </font><font>The coordinates </font><font>are then equal to
+
+ </font><font>
+	 
+ is then transforms these coordinates through rotation formulas
+
+ </font><font>
+depending on the angle </font><font>:
+
+ </font><font>and </font><font>
+	 
+ finally performing a translation to our current position
+
+ </font><font>
+in the labyrinth
+
+ </font><font>and</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font></font><img width="26" height="31" align="BOTTOM" border="0" src="./rt4_files/img33.png" alt="$ A $"><font></font><br><font></font><img width="94" height="62" align="MIDDLE" border="0" src="./rt4_files/img22.png" alt="$ (0,0) $"><font></font><img width="130" height="62" align="MIDDLE" border="0" src="./rt4_files/img34.png" alt="$ (X1, y1) $"><font></font><br> 
+ <!-- MATH
+ $(D,\frac{P(\frac{win\_x}{2}-x)}{win\_x})$
+ -->
+<img width="242" height="103" align="MIDDLE" border="0" src="./rt4_files/img39.png" alt="$ (D, \ frac {P (\ frac {win \ _x} {2} -x)} {win \ _x}) $">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><img width="26" height="31" align="BOTTOM" border="0" src="./rt4_files/img33.png" alt="$ A $"><font></font><br> 
+ <!-- MATH
+ $X' = Xcos(a) - Ysin(a)$
+ -->
+<img width="386" height="64" align="MIDDLE" border="0" src="./rt4_files/img40.png" alt="$ X = Xcos (a) - Ysin (a) $"><font></font><!-- MATH
+ $Y' = Xsin(a) + Ycos(a)$
+ -->
+<img width="387" height="64" align="MIDDLE" border="0" src="./rt4_files/img41.png" alt="$ Y &#39;= Xsin (a) + Ycos (a) $">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><br> 
+ <img width="227" height="64" align="MIDDLE" border="0" src="./rt4_files/img42.png" alt="$ X &#39;= X&#39; + x0 $"><font></font><img width="220" height="64" align="MIDDLE" border="0" src="./rt4_files/img43.png" alt="$ Y &#39;&#39; = Y &#39;+ y 0 $">
+
+</p><p>
+
+	<font size="-2"><font><font>51</font></font></font>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>The lines of the labyrinth</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ Each cell separation is a right </font></font><img width="27" height="31" align="BOTTOM" border="0" src="./rt4_files/img13.png" alt="$ X $"><font><font>or </font><font>
+constant.
+
+</font></font><img width="26" height="62" align="MIDDLE" border="0" src="./rt4_files/img14.png" alt="$ Y $">
+
+<br><font></font></p><p>
+ <img width="561" height="424" align="BOTTOM" border="0" src="./rt4_files/img60.png" alt="\ Includegraphics [height = 10cm] {} rcast4.eps">
+
+</p><p>
+
+	<font size="-2"><font><font>52</font></font></font>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Intersections</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ For each </font></font><img width="27" height="31" align="BOTTOM" border="0" src="./rt4_files/img13.png" alt="$ X $"><font><font>, we will look for intersections between right
+
+ </font><font>and all rights of the maze.
+
+	   </font><font>
+	 
+ In parametric:
+
+ </font><font>and </font><font>or </font><font>is the distance between us and the box change
+
+ </font><font> 
+ (in proportion to the norm of the vector </font><font>).
+
+	   </font><font>
+	 
+ It must then determine whether the box in which we just
+
+ </font><font>
+go is a wall or not. </font><font>By handing </font><font>in the equation
+
+ </font><font>
+of the straight parametric example is obtained </font><font>
+for our intersection. </font><font>It is then necessary to see the box
+
+ </font><code><font>[5] [3]</font></code><font> our table.
+
+	 </font><font size="-2"><font>53</font></font></font><br> 
+ <!-- MATH
+ $(x0,y0) / (Vx,Vy)$
+ -->
+<img width="284" height="62" align="MIDDLE" border="0" src="./rt4_files/img44.png" alt="$ (X0, y0) / (Vx, Vy) $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font></font><br> 
+ <!-- MATH
+ $\left\{ \begin{array}{lll} x&=&x0+kVx\\y&=&y0+kVy\end{array}\right.$
+ -->
+<img width="307" height="111" align="MIDDLE" border="0" src="./rt4_files/img45.png" alt="$ \ Left \ {\ begin {array} {lll} x &amp; = &amp; x0 + kvx \\ &amp; y = y0 + &amp; KVY \ end {array} \ right. $"><font></font><img width="136" height="62" align="MIDDLE" border="0" src="./rt4_files/img46.png" alt="$ X = {x} $ cte_"><font></font><img width="134" height="62" align="MIDDLE" border="0" src="./rt4_files/img47.png" alt="$ Y = {y} $ cte_">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $">
+	 
+ <img width="27" height="31" align="BOTTOM" border="0" src="./rt4_files/img48.png" alt="$ K $"><font></font><br><font></font><img width="145" height="62" align="MIDDLE" border="0" src="./rt4_files/img35.png" alt="$ (Vx, Vy) $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><img width="27" height="31" align="BOTTOM" border="0" src="./rt4_files/img48.png" alt="$ K $"><font></font><br><font></font><img width="152" height="62" align="MIDDLE" border="0" src="./rt4_files/img49.png" alt="$ (5.0,3.4) $">
+
+<br><font></font><br> 
+ <code><font></font></code><font></font><font size="-2"><font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>A screen</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ Finally, all these intersections, keep the smallest
+
+ </font></font><br><font><font>
+non-negative, which crosses a wall. </font><font>It was therefore the distance to the
+
+ </font></font><br><font><font>
+nearest wall to be displayed.
+
+	   </font><font>suitable as a half-wall height in number
+
+ </font><font>
+of pixels.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $">
+	 
+ <!-- MATH
+ $\frac{win\_y}{2k}$
+ -->
+<img width="89" height="76" align="MIDDLE" border="0" src="./rt4_files/img50.png" alt="$ \ Frac {win \ _y} {2k} $"><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>54</font></font></font>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Optimizations</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ Using </font></font><code><font><font>int</font></font></code><font><font> instead of </font></font><code><font><font>float</font></font></code><font><font> with
+
+ </font></font><br><font><font>
+the fixed-point method (handling values
+
+ </font></font><br><font><font>
+&#8203;&#8203;multiplied by 1000).
+
+	   </font><font>
+	 
+ Pre-calculus 360 sine and cosine, and using an
+
+ </font><font>
+integer to store the viewing angle.
+
+	   </font><font>
+	 
+ Achieve image with only the floor and ceiling.
+
+ </font><font>
+Each new image, we copy that of the soil + ceiling. </font><font>Only
+
+ </font><font>
+the walls are to trace.
+
+	   </font><font>
+	 
+ Do not make 2 times the same calculation.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt4_files/img2.png" alt="$ \ Bullet $"><font></font></p><p>
+
+	<font size="-2"><font><font>55</font></font></font>
+
+</p><p>
+<br></p><hr><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./rt4_files/translate-32.png" width="20" height="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><font><font>
+
+Ol@epita.fr - tek1 - November 30, 2001 - Converted by latex2html
+
+
+
+</font></font></body></html>

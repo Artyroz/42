@@ -1,0 +1,16 @@
+TP9 Sem 28 Jan
+ Encore une 3eme couche sur les TP precedents concernant le Ray-Tracer
+ luminosite + brillance
+    - Modifier les fonctions de calcul d'intersection pour qu'elles
+     renvoient les coordonnees du point P et de la normale
+     (retrouver les coordonnees en position reelle)
+    - Une fois connu l'objet le plus proche, donc P et N aussi, appel
+     a une fonction luminosite qui transforme la couleur de l'objet : 
+          - calcul du vecteur L pour chaque spot
+          - calcul de N.L, ||N|| et ||L||, et cos(a).
+          - modifier la couleur de l'objet en fonction de cos(a)
+ ombre
+    - Avec le vecteur L precedent, refaire la serie d'intersections
+      avec P et L (au lieu de Oeil et V) pour determiner si il
+      y a des intersections avec 0<k<1
+

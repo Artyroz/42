@@ -1,0 +1,29 @@
+Scene {
+	width 500
+	height 500
+	material_max 0
+	light_max 1
+
+	Camera {
+		pos 0.0 0.0 0.0
+		rot 0.0 0.0 0.0
+		fov 70.0
+		znear 0.0
+		zfar 100.0
+	}
+	Object {
+		type cylinder
+		pos 0.0 0.0 10.0
+		rot 0.0 0.0 0.0
+		radius 2.0
+		color 000 255 000
+		material 0
+		normal NULL
+	}
+
+	Light {
+	pos -3.0 0.0 5.0
+	color 255 255 255
+	attenuation 0.2
+	}
+}

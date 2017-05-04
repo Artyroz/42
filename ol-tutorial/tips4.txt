@@ -1,0 +1,21 @@
+TP6 Sem 07 Jan 2002
+ - raytracer 1er objet
+  - faire un prog qui ouvre une fenetre, cree une image (1 ou 2 on s'en fout)
+     en 400x400.
+  - lorsqu'on recoit expose, putimage
+  - faire une premiere phase calcul avant le mlx_loop (et donc le 1er putimage) 
+     -> affichage de "please wait ...... done."
+  - dans cette phase calcul : faire une double boucle -> ts les pixels,
+     a chaque pix appeller une fonction calc qui renvoie une couleur(rgb).
+     mettre la couleur dans ce pixel. (mlx_get_color_value + put_pixel_to_img)
+  -> la 1ere fonc. calc qui fait return ffffff. on a la meme couleur dans toute
+     l'image.
+
+  - calc qui transforme (X,Y) en (x1,y1,z1) dans le cas oeil (300,0,0) et D=100
+     -> calcul de (Vx,Vy,Vz)
+     -> possibilites d'affichage par ex avec X=0 ou Y=0 : on verifie les y et
+         les z entre -cte et +cte
+  - ecriture du test d'intersection avec sphere (0,0,0) R=200
+      la fonction sphere renvoie 0 ou 1.
+  - Si intersection, calc renvoie une couleur differente.
+

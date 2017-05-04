@@ -1,0 +1,13 @@
+TP1 Sem 19 Nov
+ - prendre l'exemple de base du cours qui affiche un pixel
+ - window_color : mettre une couleur partout dans la fenetre
+ - aff_rectangle : rectangle remplis avec une couleur
+ - evenements: afficher l'arrivee d'un event (my_putstr ...)
+ - evenements: touche/click souris pour sortir du programme
+ - evenements: pixel_put a un click souris
+     => a quoi sert donc "void *param" ?
+ - evenements: gestion de l'expose, reaffichage d'un rectangle
+Pour ceux qui s'embetent
+ - aff_colormap : affiche la colormap (comme en piscine)
+ - trace d'une droite entre 2 clicks successifs (faut faire draw_line)
+ - chercher a faire en sorte que ESC seulement fasse sortir du prog.

@@ -1,0 +1,17 @@
+TP7 Sem 14 Jan
+ - 2eme couche raytracer 1er objet
+ - ecriture du test d'intersection avec plan z=0.
+ - mettre sphere + plan. determiner quel est l'objet le plus proche.
+     -> les fonctions renvoient k ou bien deja faire remplir une
+       structure qui contiendra k,P et N.
+ - Gerer le pb du plan qui s'affiche pas :
+       => d'abord deplacer l'oeil
+ - Integration de la translation des objets dans les fonctions
+     d'intersection (-> faire fonction sum_vector)
+    => test: de nouveau oeil en -300,0,0 puis plan en -100
+ - ecriture des fonctions de rotations : 1 vect/point en parametre, renvoie
+     le nouveau vect/param.
+   => d'abord faire tourne l'oeil (sur l'axe des X)
+   => appel de ces fonctions dans chaque fonction d'intersection.
+   => faire tourner un plan
+ - generalisation du systeme de description des objets. (liste...)

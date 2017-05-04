@@ -1,0 +1,647 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!-- saved from url=(0065)http://perso.epitech.eu/~ol/work/raytracer/cours/cours/rt3-5.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>rt3</title>
+<meta name="description" content="rt3">
+<meta name="keywords" content="rt3">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+
+<meta name="Generator" content="LaTeX2HTML v2K.1beta">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+
+</head>
+
+<body bgcolor="white">
+
+<center>
+<h1>Infographie de base - Epitech1</h1><br>
+Troisieme partie - Cours 5
+</center>
+
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2">Ray-Tracing - Basics</font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Mais c'est quoi ?
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Modélisation
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Objets simples dans l'espace
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Matrices et rotation
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Objets plus complexes
+
+</p><p>
+
+	<font size="-2">56</font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2">Introduction</font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ La technique de Ray-Tracing permet de créer des images de
+
+<br>
+synthèse avec le maximum de réalisme.
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Cette technique est basée sur une modélisation mathématique
+
+<br>
+des objets que l'on veut représenter.
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ L'aspect rapidité de création de l'image n'est pas du tout
+
+<br>
+pris en compte. Certaines images très complexes et très
+
+<br>
+réalistes prennent des heures de calculs (pour les films par ex.).
+
+</p><p>
+
+	<font size="-2">57</font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2">Modélisation</font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Pour réaliser notre image, on va tout d'abord modéliser les
+
+<br>
+objets contenus dans cette image. Ces objets seront modélisés
+
+<br>
+au moyen de formes géométriques simples : des sphères, plans,
+
+<br>
+cylindres, cônes ...
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Nous aurons donc une <i>description de la scène</i> en termes
+
+<br>
+mathématiques: des coordonnées en 3 dimensions pour la position
+
+<br>
+dans l'espace, des informations sur la taille de nos objets
+
+<br> 
+ (ex: rayon d'une sphère), sur la rotation ou la limite de nos objets.
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Ensuite c'est au tour des différentes lumières qui éclairent
+
+<br>
+notre scène : la position suffit généralement.
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Il ne nous manque que les détails concernant notre point de
+
+<br>
+vision, notre façon de regarder cette scène: les coordonnées
+
+<br>
+de notre ``oeil'' ainsi que la direction de vision.
+
+</p><p>
+
+	<font size="-2">58</font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2">Modélisation de la scène</font>
+	
+</div>
+
+<p>
+ <img width="700" height="679" align="BOTTOM" border="0" src="./rt5_files/img71.png" alt="\includegraphics[]{brt1.eps}">
+
+</p><p>
+
+	<font size="-2">59</font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2">Principe du lancer de rayon</font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Les rayons lumineux partent des sources de lumière, dans toutes
+
+<br>
+les directions. Certains ``frappent'' les objets de notre scène,
+
+<br>
+et d'autres rayons sont alors émis à leur tour dans toutes les
+
+<br>
+directions, dont celle de notre oeil : on voit l'objet.
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ On ne peut bien sûr pas traiter l'infinité de rayons émis
+
+<br>
+par la source lumineuse. On utilisera le processus inverse:
+
+<br>
+D'où viennent les rayons qui arrivent jusqu'à l'oeil ? De quel
+
+<br>
+objet ? Eclairé par quelles lumières ?
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ On reprend le principe du ray-casting : différent rayons
+
+<br>
+passent par l'oeil, et viennent couper un plan de projection <img width="34" height="30" align="BOTTOM" border="0" src="./rt5_files/img2.png" alt="$P$">
+
+<br>
+symbolisant notre image. Cette fois-ci, on a autant de rayons que de
+
+<br>
+pixels dans notre image.
+
+</p><p>
+
+	<font size="-2">60</font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2">Les rayons de l'oeil ...</font>
+	
+</div>
+
+<p>
+ <img width="960" height="678" align="BOTTOM" border="0" src="./rt5_files/img72.png" alt="\includegraphics[]{brt2.eps}">
+
+</p><p>
+
+	<font size="-2">61</font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2">... à l'envers</font>
+	
+</div>
+
+<p>
+ <img width="948" height="693" align="BOTTOM" border="0" src="./rt5_files/img73.png" alt="\includegraphics[]{brt4.eps}">
+
+</p><p>
+
+	<font size="-2">62</font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2">Un premier cas très simple : la sphère</font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Une sphère de rayon <img width="143" height="31" align="BOTTOM" border="0" src="./rt5_files/img3.png" alt="$R = 100$"> centrée en <img width="128" height="62" align="MIDDLE" border="0" src="./rt5_files/img4.png" alt="$(0,0,0)$"> .
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Notre oeil placé en <img width="194" height="62" align="MIDDLE" border="0" src="./rt5_files/img5.png" alt="$(-300,0,0)$"> regardant vers les <img width="27" height="31" align="BOTTOM" border="0" src="./rt5_files/img6.png" alt="$x$"> positifs.
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ La distance oeil <img width="42" height="31" align="BOTTOM" border="0" src="./rt5_files/img7.png" alt="$\to$"> plan de projection <img width="34" height="30" align="BOTTOM" border="0" src="./rt5_files/img2.png" alt="$P$"> : <img width="146" height="31" align="BOTTOM" border="0" src="./rt5_files/img8.png" alt="$D = 100$">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Le rapport entre l'image et le plan de projection : <img width="28" height="30" align="BOTTOM" border="0" src="./rt5_files/img9.png" alt="$1$"> .
+
+</p><p>
+
+	<font size="-2">63</font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2">Raycasting is back</font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ On cherche l'équation de la droite passant par notre oeil
+
+<br> 
+ <!-- MATH
+ $(x_{oeil},y_{oeil},z_{oeil})$
+ -->
+<img width="257" height="62" align="MIDDLE" border="0" src="./rt5_files/img10.png" alt="$(x_{oeil},y_{oeil},z_{oeil})$"> et par <img width="182" height="62" align="MIDDLE" border="0" src="./rt5_files/img11.png" alt="$(x1,y1,z1)$"> le point du plan
+
+<br>
+de projection correspondant aux coordonnées <img width="109" height="62" align="MIDDLE" border="0" src="./rt5_files/img12.png" alt="$(X,Y)$"> sur l'image.
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Tout comme pour la technique du raycasting, nous allons replacer
+
+<br>
+notre oeil en <img width="128" height="62" align="MIDDLE" border="0" src="./rt5_files/img4.png" alt="$(0,0,0)$">, regardant vers les <img width="27" height="31" align="BOTTOM" border="0" src="./rt5_files/img6.png" alt="$x$"> positifs.
+
+<br>
+On pourra ainsi calculer très facilement <img width="182" height="62" align="MIDDLE" border="0" src="./rt5_files/img11.png" alt="$(x1,y1,z1)$">, puis on
+
+<br>
+appliquera une rotation et une translation pour mettre l'oeil
+
+<br>
+dans sa position définitive.
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Pour ce premier exemple, nous n'appliquerons que la translation
+
+<br>
+vers la position souhaitée <img width="194" height="62" align="MIDDLE" border="0" src="./rt5_files/img5.png" alt="$(-300,0,0)$">. La rotation viendra
+
+<br>
+avec les matrices un peu plus tard, et permettra de changer
+
+<br>
+la direction de vision.
+
+</p><p>
+
+	<font size="-2">64</font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2">La droite oeil / pixel ...</font>
+	
+</div>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Lorsque notre oeil est dans sa <em>position simple</em> (c'est-à-dire
+
+<br>
+qu'il est en <img width="128" height="62" align="MIDDLE" border="0" src="./rt5_files/img4.png" alt="$(0,0,0)$"> et qu'il regarde vers les <img width="27" height="31" align="BOTTOM" border="0" src="./rt5_files/img6.png" alt="$x$"> positifs),
+
+<br>
+notre exemple nous donne : <img width="234" height="31" align="BOTTOM" border="0" src="./rt5_files/img13.png" alt="$x1 = D = 100$">,
+
+<br> 
+ <!-- MATH
+ $y1 = \frac{win_{X}}{2} - X$
+ -->
+<img width="240" height="78" align="MIDDLE" border="0" src="./rt5_files/img14.png" alt="$y1 = \frac{win_{X}}{2} - X$"> et <!-- MATH
+ $z1 = \frac{win_{Y}}{2} - Y$
+ -->
+<img width="233" height="78" align="MIDDLE" border="0" src="./rt5_files/img15.png" alt="$z1 = \frac{win_{Y}}{2} - Y$"> .
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Le vecteur directeur de la droite passant par notre oeil et
+
+<br>
+le point <img width="182" height="62" align="MIDDLE" border="0" src="./rt5_files/img11.png" alt="$(x1,y1,z1)$"> est actuellement : <!-- MATH
+ $V\left| \begin{array}{l}
+ x1 \\
+ y1 \\
+ z1 \\
+\end{array}\right.$
+ -->
+<img width="116" height="143" align="MIDDLE" border="0" src="./rt5_files/img16.png" alt="$V\left\vert \begin{array}{l}
+x1 \\
+y1 \\
+z1 \\
+\end{array}\right.$"> car notre oeil
+
+<br>
+est toujours en <img width="128" height="62" align="MIDDLE" border="0" src="./rt5_files/img4.png" alt="$(0,0,0)$">.
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ C'est maintenant qu'il nous faut appliquer la rotation à <img width="35" height="31" align="BOTTOM" border="0" src="./rt5_files/img17.png" alt="$V$"> (ou
+
+<br> 
+ à <img width="182" height="62" align="MIDDLE" border="0" src="./rt5_files/img11.png" alt="$(x1,y1,z1)$"> c'est pareil) pour que l'oeil puisse regarder dans un
+
+<br>
+autre sens que l'axe des <img width="27" height="31" align="BOTTOM" border="0" src="./rt5_files/img6.png" alt="$x$">. Nous verrons plus tard comment faire.
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ La translation de notre oeil (on veut le mettre en <img width="194" height="62" align="MIDDLE" border="0" src="./rt5_files/img5.png" alt="$(-300,0,0)$"> )
+
+<br>
+n'influence pas la direction de vision, et ne va pas non plus
+
+<br>
+changer le vecteur <img width="35" height="31" align="BOTTOM" border="0" src="./rt5_files/img17.png" alt="$V$">.
+
+<p>
+
+	<font size="-2">65</font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2">... en équation</font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Nous pouvons donc écrire l'équation paramétrique de notre
+
+<br>
+droite :
+
+<br> 
+ <!-- MATH
+ $\left\{ \begin{array}{lll}
+x&=&x_{oeil}+kV_{x}\\
+y&=&y_{oeil}+kV_{y} \\
+z&=&z_{oeil}+kV_{z} \\
+\end{array}\right.$
+ -->
+<img width="326" height="143" align="MIDDLE" border="0" src="./rt5_files/img18.png" alt="$\left\{ \begin{array}{lll}
+x&amp;=&amp;x_{oeil}+kV_{x}\\
+y&amp;=&amp;y_{oeil}+kV_{y} \\
+z&amp;=&amp;z_{oeil}+kV_{z} \\
+\end{array}\right.$">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ <img width="44" height="62" align="MIDDLE" border="0" src="./rt5_files/img19.png" alt="$V_{x}$">, <img width="43" height="62" align="MIDDLE" border="0" src="./rt5_files/img20.png" alt="$V_{y}$"> et <img width="43" height="62" align="MIDDLE" border="0" src="./rt5_files/img21.png" alt="$V_{z}$"> sont les coordonnées du vecteur <img width="35" height="31" align="BOTTOM" border="0" src="./rt5_files/img17.png" alt="$V$">.
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Cette équation utilise les coordonées définitives de l'oeil.
+
+<br>
+Cela réalise la translation de la position <img width="128" height="62" align="MIDDLE" border="0" src="./rt5_files/img4.png" alt="$(0,0,0)$"> vers
+
+<br> 
+ <!-- MATH
+ $(x_{oeil},y_{oeil},z_{oeil})$
+ -->
+<img width="257" height="62" align="MIDDLE" border="0" src="./rt5_files/img10.png" alt="$(x_{oeil},y_{oeil},z_{oeil})$">.
+
+</p><p>
+
+	<font size="-2">66</font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2">Première intersection</font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ L'équation de la sphère est la suivante : <!-- MATH
+ $x^2 + y^2 + z^2 = R^2$
+ -->
+<img width="298" height="69" align="MIDDLE" border="0" src="./rt5_files/img22.png" alt="$x^2 + y^2 + z^2 = R^2$"> .
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ En injectant les 3 formules de l'équation paramétrique de la
+
+<br>
+droite dans l'équation de la sphère, on obtient après un
+
+<br>
+léger calcul :
+
+<br> 
+ <!-- MATH
+ $ak^2 + bk + c = 0$
+ -->
+<img width="270" height="69" align="MIDDLE" border="0" src="./rt5_files/img23.png" alt="$ak^2 + bk + c = 0$"> avec <!-- MATH
+ $\begin{array}{lll}
+a&=&V_{x}^2 + V_{y}^2 + V_{z}^2\\
+b&=&2(x_{oeil}V_{x} + y_{oeil}V_y + z_{oeil}V_z)\\
+c&=&x_{oeil}^2 + y_{oeil}^2 + z_{oeil}^2 - R^2\\
+\end{array}$
+ -->
+<img width="551" height="149" align="MIDDLE" border="0" src="./rt5_files/img24.png" alt="$ \begin{array}{lll}
+a&amp;=&amp;V_{x}^2 + V_{y}^2 + V_{z}^2\\
+b&amp;=&amp;2(x_{oeil}V_{x} + y_...
+...+ z_{oeil}V_z)\\
+c&amp;=&amp;x_{oeil}^2 + y_{oeil}^2 + z_{oeil}^2 - R^2\\
+\end{array}$">
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ On a alors 3 cas :
+
+<br> 
+ <!-- MATH
+ $\Delta = b^2 - 4ac  < 0$
+ -->
+<img width="281" height="69" align="MIDDLE" border="0" src="./rt5_files/img25.png" alt="$\Delta = b^2 - 4ac &lt; 0$"> : pas d'intersection droite/sphère.
+
+<br> 
+ <img width="111" height="31" align="BOTTOM" border="0" src="./rt5_files/img26.png" alt="$\Delta = 0$"> : une unique intersection.
+
+<br> 
+ <img width="106" height="62" align="MIDDLE" border="0" src="./rt5_files/img27.png" alt="$\Delta &gt; 0$"> : 2 intersections.
+
+<br>
+En pratique on traitera le cas <img width="111" height="31" align="BOTTOM" border="0" src="./rt5_files/img26.png" alt="$\Delta = 0$"> comme le cas <img width="106" height="62" align="MIDDLE" border="0" src="./rt5_files/img27.png" alt="$\Delta &gt; 0$"> .
+
+</p><p>
+
+	<font size="-2">67</font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2">A l'écran</font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Et bien sûr, <!-- MATH
+ $k = \frac{-b\pm\sqrt{\Delta}}{2a}$
+ -->
+<img width="186" height="87" align="MIDDLE" border="0" src="./rt5_files/img28.png" alt="$k = \frac{-b\pm\sqrt{\Delta}}{2a}$"> représente
+
+<br>
+la distance entre l'oeil et le point d'intersection avec la sphère.
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Lorsque plusieurs objets de notre scène ont ainsi une
+
+<br>
+intersection avec la droite, on choisit de représenter l'objet
+
+<br>
+le plus proche de notre oeil : parmis tous les <img width="27" height="31" align="BOTTOM" border="0" src="./rt5_files/img29.png" alt="$k$"> obtenus pour
+
+<br>
+toutes les intersections, on prend le plus petit <img width="27" height="31" align="BOTTOM" border="0" src="./rt5_files/img29.png" alt="$k$"> non négatif.
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Si il y a intersection, on met donc (pour le moment) la couleur
+
+<br>
+de notre objet aux coordonnées <img width="109" height="62" align="MIDDLE" border="0" src="./rt5_files/img12.png" alt="$(X,Y)$"> de notre image. Sinon
+
+<br>
+on met du noir (absence de lumière).
+
+</p><p>
+
+	<font size="-2">68</font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2">Intersection avec un plan</font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Nous choisissons le plan d'équation <img width="95" height="31" align="BOTTOM" border="0" src="./rt5_files/img30.png" alt="$z = 0$">. Le calcul de
+
+<br>
+l'intersection avec la droite associée à <img width="109" height="62" align="MIDDLE" border="0" src="./rt5_files/img12.png" alt="$(X,Y)$"> nous donne
+
+<br>
+immédiatement : <!-- MATH
+ $k = -\frac{z_{oeil}}{V_z}$
+ -->
+<img width="157" height="66" align="MIDDLE" border="0" src="./rt5_files/img31.png" alt="$k = -\frac{z_{oeil}}{V_z}$"> .
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Si <img width="43" height="62" align="MIDDLE" border="0" src="./rt5_files/img32.png" alt="$V_z$"> est nul, il n'y a pas d'intersection.
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ Il faut alors comparer les différentes valeurs de <img width="27" height="31" align="BOTTOM" border="0" src="./rt5_files/img29.png" alt="$k$">
+
+<br>
+résultant des différentes intersections, pour déterminer
+
+<br>
+quel objet est vu, et quelle couleur mettre en <img width="109" height="62" align="MIDDLE" border="0" src="./rt5_files/img12.png" alt="$(X,Y)$"> .
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt5_files/img1.png" alt="$\bullet$">
+	 
+ <i>ATTENTION</i>: en C, pour tester la nullité d'un <code>float</code>
+
+<br>
+ou d'un <code>double</code>, comparez sa valeur absolue à une valeur
+
+<br>
+arbitraire très petite ( <img width="136" height="31" align="BOTTOM" border="0" src="./rt5_files/img33.png" alt="$0.00001$"> par exemple).
+
+</p><p>
+
+	<font size="-2">69</font>
+
+</p><p>
+
+<br></p><hr>
+
+Ol@epita.fr - tek1 - 17 Dec 2001 - Converted by latex2html
+
+
+
+
+</body></html>

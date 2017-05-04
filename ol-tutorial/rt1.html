@@ -1,0 +1,674 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!-- saved from url=(0065)http://perso.epitech.eu/~ol/work/raytracer/cours/cours/rt1-1.html -->
+<html class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>rt</title>
+<meta name="description" content="rt">
+<meta name="keywords" content="rt">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+
+<meta name="Generator" content="LaTeX2HTML v2K.1beta">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+
+<link rel="next" href="http://perso.epitech.eu/~ol/work/raytracer/cours/cours/node1.html">
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="./rt1_files/translateelement.css"></head>
+
+<body bgcolor="white">
+
+<center>
+<h1><font><font>Basic computer graphics - Epitech1</font></font></h1><br><font><font>
+Part I - Course 1
+</font></font></center>
+
+<p>
+  <font size="+2"><i><font><font>Planning:</font></font></i></font>
+<br><table cellpadding="3">
+<tbody><tr><td align="LEFT"><font><font>- Presentation and operation of X-Window</font></font></td>
+</tr>
+<tr><td align="LEFT">&nbsp;</td>
+</tr>
+<tr><td align="LEFT"><font><font>- MinilibX: total</font></font></td>
+</tr>
+<tr><td align="LEFT">&nbsp;</td>
+</tr>
+<tr><td align="LEFT"><font><font>- Single Figures</font></font></td>
+</tr>
+<tr><td align="LEFT">&nbsp;</td>
+</tr>
+<tr><td align="LEFT"><font><font>- 3D Projections </font></font><img width="42" height="31" align="BOTTOM" border="0" src="./rt1_files/img1.png" alt="$ \ To $"><font><font>2D</font></font></td>
+</tr>
+<tr><td align="LEFT">&nbsp;</td>
+</tr>
+<tr><td align="LEFT"><font><font>- Ray-casting (already math)</font></font></td>
+</tr>
+<tr><td align="LEFT">&nbsp;</td>
+</tr>
+<tr><td align="LEFT"><font><font>- Principle of a Ray-Tracer</font></font></td>
+</tr>
+<tr><td align="LEFT">&nbsp;</td>
+</tr>
+<tr><td align="LEFT"><font><font>- Yuck (yet) Math</font></font></td>
+</tr>
+<tr><td align="LEFT">&nbsp;</td>
+</tr>
+<tr><td align="LEFT"><font><font>- First version</font></font></td>
+</tr>
+<tr><td align="LEFT">&nbsp;</td>
+</tr>
+<tr><td align="LEFT"><font><font>- What fun more seriously</font></font></td>
+</tr>
+<tr><td align="LEFT">&nbsp;</td>
+</tr>
+</tbody></table>
+
+</p><p>
+
+	<font size="-2"><font><font>1</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>X-Window</font></font></font>
+	
+</div>
+
+<p>
+</p><p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ It is a graphical user environment under UN * X
+
+ </font></font><br><font><font> 
+ (as opposed to a mode called `` text '' or `` console ')
+
+	   </font><font>
+	 
+ Commonly called X11 or X11R6 (Version 11 Release 6)
+
+	   </font><font>
+	 
+ This is the most common graphics system under UN * X
+
+	   </font><font>
+	 
+ was designed for a network environment
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font></p><p>
+
+	<font size="-2"><font><font>2</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Architecture in 2 parts</font></font></font>
+	
+</div>
+
+<p>
+<font size="+1"><font><font>- The first part called </font></font><i><font><font>X Server</font></font></i> </font>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font><font> 
+	 
+ For each set screen (or </font></font><code><font><font>DISPLAY</font></font></code><font><font> ) - Mouse - keyboard,
+
+ </font></font><br><font><font>
+there is a unique program called X server
+
+	   </font><font>
+	 
+ It is he who controls (through unix) display
+
+ </font><font> 
+on the screen , mouse movements, and retrieves
+
+ </font><font>
+keys typed on the keyboard.
+
+	   </font><font>
+	 
+ It handles the windowing system that was on the screen.
+
+	   </font><font>
+	 
+ The X server has a communication protocol through which it
+
+ </font><font>
+communicates with the programs wanting use an element
+
+ </font><font>
+of our overall screen - mouse - keyboard
+
+	   </font><code><font>top</font></code><font> or </font><code><font>ps -auwx</font></code><font> allow you to see the
+
+ </font><font>
+server program X. </font><i><font>XF86_S3</font></i><font> , </font><i><font>XFree86</font></i><font> , </font><i><font>XF86_SVGA</font></i><font> ,
+
+ </font><font>
+or </font><i><font>X</font></i><font> are current names for an X server
+
+	   </font><font>
+	 
+ Compare PC and an alpha : no X server on alpha.
+
+	 </font><font size="-2"><font>3</font></font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $">
+	 
+ <code><font></font></code><font></font><code><font></font></code><font></font><br><font></font><i><font></font></i><font></font><i><font></font></i><font></font><i><font></font></i><font></font><br><font></font><i><font></font></i><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><font size="-2"><font></font></font>
+
+</p><p>
+
+</p><p>
+<font size="+1"><font><font>- A second part called </font></font><i><font><font>X Client</font></font></i></font>
+
+</p><p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ This is a program that asks for information
+
+ </font></font><br><font><font>
+from the keyboard, mouse, and who wants to display on the screen.
+
+	   </font><font>
+	 
+ This program can be anywhere on the network-where.
+
+ </font><font>
+Just to establish a network connection between the machine
+
+ </font><font>
+where the X client program, and the machine where the X server is
+
+ </font><font>a program on an Alpha can display anything on
+
+ </font><font>
+your screen.
+
+	   </font><i><font>netscape</font></i><font> , </font><i><font>dclock</font></i><font> , </font><i><font>gimp</font></i><font> or even </font><i><font>xrn</font></i><font> 
+             are examples
+
+ </font><font>
+of X clients, through the network that will connect
+
+ </font><font>
+to the X server associated with your screen and ask him to show
+
+ </font><font>
+windows with text, images ...
+
+	   </font><font>
+	 
+ In exchange, the X server will communicate to these customers X the
+
+ </font><font>
+keyed-in data and movements mouse:
+
+ </font><font>
+these are the </font><i><font>events</font></i><font> .
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br> 
+ <img width="42" height="31" align="BOTTOM" border="0" src="./rt1_files/img1.png" alt="$ \ To $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $">
+	 
+ <i><font></font></i><font></font><i><font></font></i><font></font><i><font></font></i><font></font><i><font></font></i><font></font><br><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><i><font></font></i><font></font></p><p>
+
+	<font size="-2"><font><font>4</font></font></font>
+
+</p><p>
+
+</p><p>
+</p><div align="CENTER">
+<font size="+2"><font><font>Architecture in 2 parts</font></font></font>
+
+</div>
+
+<p>
+<img src="./rt1_files/archi.png">
+
+</p><p>
+
+	<font size="-2"><font><font>5</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>The MiniLibX</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ The basic elements of
+
+	   </font><font>
+	 
+ the event management
+
+	   </font><font>
+	 
+ The use of temporary images
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font></p><p>
+
+	<font size="-2"><font><font>6</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Viewed</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ Establishing a network connection between the X client
+
+ </font></font><br><font><font>
+and the X server:
+
+ </font><font size="-1"><code><font>mlx_init void * ()</font></code></font><font> 
+	 
+ Create a new window on the screen:
+
+ </font><font size="-1"><code><font>mlx_new_window void * (void * mlx_ptr, int width, int height, char * title)</font></code></font><font> 
+	 
+ Viewing a color pixel in the window
+
+ </font><font size="-1"><code><font>mlx_pixel_put int (void * mlx_ptr, win_ptr void *, int x, int y, int color)</font></code></font></font><br> 
+ <font size="-1"><code><font></font></code></font>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br> 
+ <font size="-1"><code><font></font></code></font>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br> 
+ <font size="-1"><code><font></font></code></font>
+
+</p><p>
+
+	<font size="-2"><font><font>7</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Example ever seen</font></font></font>
+	
+</div>
+
+<p>
+  <table width="1134">
+<tbody><tr><td>
+<pre><font><font>int main ()</font></font><font></font><font><font>
+{</font></font><font></font><font><font>
+  void * mlx_ptr;</font></font><font></font><font><font>
+  void * win_ptr;</font></font><font></font>
+<font></font><font><font>
+  mlx_ptr mlx_init = ();</font></font><font></font><font><font>
+  win_ptr = mlx_new_window (mlx_ptr, 500,500, "Test 1");</font></font><font></font><font><font>
+  mlx_pixel_put (mlx_ptr, win_ptr, 250,250,0xFFFFFF);</font></font><font></font><font><font>
+  while (42)</font></font><font></font><font><font>
+    ;</font></font><font></font><font><font>
+}</font></font><font></font>
+</pre></td></tr>
+</tbody></table>
+
+</p><p>
+
+	<font size="-2"><font><font>8</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>The Events</font></font></font>
+	
+</div>
+
+<p>
+  <i><font><font>- The 3 events available with minilibX:</font></font></i>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font><font> 
+	 
+ A key has been typed on the keyboard
+
+	   </font><font>
+	 
+ A mouse button was used
+
+	   </font><font>
+	 
+ a part of your window has been cleared
+
+ </font><font> 
+ (called event </font><i><font>Expose</font></i><font> ).
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><i><font></font></i><font></font></p><p>
+
+	<font size="-2"><font><font>9</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>The Events and minilibX</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+We will provide the minilibX three functions that will be
+
+ </font></font><br><font><font>
+performed respectively for each type of event that
+
+ </font></font><br><font><font>
+occurs.
+
+	   </font><font>
+	 
+The minilibX also transmit more detailed information
+
+ </font><font>
+as the key that was hit or with a button on the
+
+ </font><font>
+mouse is clicked.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>10</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Keyboard Event</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ When a key has been hit the keyboard, the minilibX
+
+ </font></font><br><font><font>
+call your function (which baptizes </font></font><code><font><font>gere_key</font></font></code><font><font> for
+
+ </font></font><br><font><font>
+example) as follows:
+
+ </font><code><font>gere_key (keycode, param);</font></code><font> 
+with </font><code><font>int keycode</font></code><font> and </font><code><font>void * param</font></code><font> .
+
+	   </font><font>
+	 
+ How to report to the minilibX it will use the
+
+ </font><font>
+function </font><code><font>gere_key</font></code><font> ? </font><font>With:
+
+ </font><code><font>mlx_key_hook (void * win_ptr, int (* funct_ptr) (), void * param)</font></code><font> 
+	 
+ For example:
+
+ </font><code><font>struct s_machin my_var; </font></code><code><font>... </font></code><code><font>mlx_key_hook (win_ptr, gere_key, &amp; my_var)</font></code></font><br> 
+   <code><font></font></code>
+
+<br><font></font><code><font></font></code><font></font><code><font></font></code><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><code><font></font></code><font></font><br> 
+   <code><font></font></code>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br> 
+ <code><font></font></code>
+
+<br> 
+ <code><font></font></code>
+
+<br> 
+ <code><font></font></code>
+
+</p><p>
+
+	<font size="-2"><font><font>11</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Mouse Event</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ As for the keyboard, minilibX call our function
+
+ </font></font><br><font><font>
+a well-defined way:
+
+ </font><code><font>gere_mouse (button, x, y, param);</font></code><font> 
+with </font><code><font>int button</font></code><font> , </font><code><font>int x</font></code><font> , </font><code><font>int y</font></code><font> and
+            </font><code><font>void * param</font></code><font> .
+
+ </font><font> 
+ - </font><code><font>button</font></code><font> can take the values &#8203;&#8203;1, 2 or 3 button
+
+ </font><font>
+left middle or right (2 buttons simultaneously, </font><font>events 2)
+
+ </font><font> 
+ - </font><code><font>x</font></code><font> and </font><code><font>y</font></code><font> are the coordinates of the mouse at the time of the click,
+
+ </font><font>
+relative to the top left corner of the window.
+
+	   </font><font>
+	 
+ On the side of minilibX:
+
+ </font><code><font>mlx_mouse_hook ( win_ptr void *, int (* funct_ptr) (), void * param)</font></code><font> 
+	 
+ For example:
+
+ </font><code><font>struct s_machin my_var; </font></code><code><font>... </font></code><code><font>mlx_mouse_hook (win_ptr, gere_mouse, and my_var);</font></code></font><br> 
+   <code><font></font></code>
+
+<br><font></font><code><font></font></code><font></font><code><font></font></code><font></font><code><font></font></code><font></font><code><font></font></code><font></font><br><font></font><code><font></font></code><font></font><br><font></font><img width="39" height="31" align="BOTTOM" border="0" src="./rt1_files/img3.png" alt="= $"><font></font><br><font></font><code><font></font></code><font></font><code><font></font></code><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br> 
+   <code><font></font></code>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br> 
+ <code><font></font></code>
+
+<br> 
+ <code><font></font></code>
+
+<br> 
+ <code><font></font></code>
+
+</p><p>
+
+	<font size="-2"><font><font>12</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Event sets</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ When some or all of our window should be
+
+ </font></font><br><font><font>
+displayed again the minilibX call our function:
+
+ </font><code><font>gere_expose (param)</font></code><font>  
+ - From the first appearance of the window, an event
+
+ </font><font>
+will be sent to expose minilibX (your program ..).
+
+	   </font><font>
+	 
+ the side of the minilibX:
+
+ </font><code><font>mlx_expose_hook (void * win_ptr, int (* funct_ptr) (), void * param)</font></code><font> 
+	 
+ For example:
+
+ </font><code><font>struct s_machin my_var; </font></code><code><font>... </font></code><code><font>mlx_expose_hook (win_ptr, gere_expose, &amp; my_var)</font></code></font><br> 
+   <code><font></font></code>
+
+<br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br> 
+   <code><font></font></code>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br> 
+ <code><font></font></code>
+
+<br> 
+ <code><font></font></code>
+
+<br> 
+ <code><font></font></code>
+
+</p><p>
+
+	<font size="-2"><font><font>13</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Except ...</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font><font>
+	 
+ Except that one missing piece:
+
+ </font><code><font>mlx_loop (void * mlx_ptr)</font></code><font> 
+This function of minilibX will do an infinite loop
+
+ </font><font>
+to process events from the X server
+
+ </font><font>
+and execute the correct function.
+
+	   </font><font>
+	 
+ The infinite loop contains the following:
+
+ </font><i><font>- Y-he has a new event? </font></i><i><font>- Yes: call to function associated with this event </font></i><i><font>- Call the generic function</font></i><font> 
+	 
+ The `` generic '' function is one of your duties communicated
+
+ </font><font> 
+ to minilibX through:
+
+ </font><code><font>mlx_loop_hook (void * mlx_ptr, int (* funct_ptr) (), void * param)</font></code><font> 
+and will be performed as follows:
+
+ </font><code><font>gere_loop (param);</font></code></font><br> 
+   <code><font></font></code>
+
+<br><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br> 
+ <i><font></font></i>
+
+<br> 
+  <i><font></font></i>
+
+<br> 
+ <i><font></font></i>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font><br><font></font><br> 
+   <code><font></font></code>
+
+<br><font></font><br> 
+   <code><font></font></code>
+
+</p><p>
+
+	<font size="-2"><font><font>14</font></font></font>
+
+</p><p>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Essential</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $">
+	 
+ <em><font><font>Warning:</font></font></em><font><font> the function call </font></font><code><font><font>mlx_loop</font></font></code><font><font> is essential
+
+ </font></font><br><font><font>
+that your program works with events.
+
+	   </font><font>
+	 
+ Typical example:
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt1_files/img2.png" alt="$ \ Bullet $"><font></font></p><p>
+  <table width="1134">
+<tbody><tr><td>
+<pre><font><font>int main ()</font></font><font></font><font><font>
+{</font></font><font></font><font><font>
+  void * mlx_ptr;</font></font><font></font><font><font>
+  void * win_ptr;</font></font><font></font><font><font>
+ [...]</font></font><font></font><font><font>
+  mlx_ptr mlx_init = ();</font></font><font></font><font><font>
+  win_ptr = mlx_new_window (mlx_ptr, 500,500, "Test 1");</font></font><font></font><font><font>
+  mlx_expose_hook (win_ptr, gere_expose, and my_var);</font></font><font></font><font><font>
+  mlx_key_hook (win_ptr, gere_key, and my_var);</font></font><font></font><font><font>
+  mlx_loop (mlx_ptr);</font></font><font></font><font><font>
+}</font></font><font></font>
+</pre></td></tr>
+</tbody></table>
+
+</p><p>
+
+	<font size="-2"><font><font>15</font></font></font>
+
+</p><p>
+
+<br></p><hr>
+<i><font><font>Ol@epita.fr - tek1 - November 19, 2001 - Converted by latex2html</font></font></i><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./rt1_files/translate-32.png" width="20" height="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div>
+
+
+</body></html>

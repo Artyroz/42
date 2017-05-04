@@ -1,0 +1,600 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!-- saved from url=(0065)http://perso.epitech.eu/~ol/work/raytracer/cours/cours/rt4-9.html -->
+<html class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>rt4</title>
+<meta name="description" content="rt4">
+<meta name="keywords" content="rt4">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+
+<meta name="Generator" content="LaTeX2HTML v2K.1beta">
+
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="./rt9_files/translateelement.css"></head>
+
+<body bgcolor="white">
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Compound objects</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ We want to make a cube, and then be able to handle
+
+ </font></font><br><font><font>
+this in a simple cube.
+
+	   </font><font>
+	 
+ Basically, a cube consists of 6 faces, so either 6
+
+ </font><font>
+parallelograms (squares). </font><font>For these 6 faces
+
+ </font><font>
+positioned correctly, it is necessary for 5 of them perform
+
+ </font><font>
+rotations and one translation ( </font><font>on the axis of </font><font>us
+
+ </font><font>
+gives the face of the left of our cube example ..).
+
+	   </font><font>
+	 
+ Suppose we want to consider the cube as a
+
+ </font><font>
+single entity, and apply it as a whole a translation
+
+ </font><font>
+and rotations. </font><font>This principle tends to blind us 6 pieces
+
+ </font><font>
+that make up our plan object. </font><font>However, describing our
+
+ </font><font>
+3D scene by simply speaking of a cube in space with
+
+ </font><font>
+its position and its characteristics, is significantly interressant.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><img width="62" height="31" align="BOTTOM" border="0" src="./rt9_files/img70.png" alt="$ 90 ^ o $"><font></font><img width="27" height="31" align="BOTTOM" border="0" src="./rt9_files/img71.png" alt="$ X $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><br><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>115</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Tips grouped</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ The 6 shots bits will be grouped into a object
+
+ </font></font><br><font><font>
+cube type. </font><font>These six bits, are objects themselves, have their
+
+ </font></font><br><font><font>
+own translations and rotations. </font><font>These transformations are
+
+ </font></font><br><font><font>
+those that create the cube object in position
+
+ </font></font><br><font><font>
+simple: a piece that does not move to the bottom of the cube, a second
+
+ </font></font><br><font><font>
+identical but high end to the top of the cube ...
+
+	   </font><font>
+	 
+ The cube object will itself its own transformations: they
+
+ </font><font>
+. rammener used to the cube of its actual position to its simple position
+
+ </font><font>
+Once singles position for the cube, each of 6 bits
+
+ </font><font>
+plan, you have to put in the position of the single end plan.
+
+ </font><font>
+We can then involve the intersecting function with
+
+ </font><font>
+a plan.
+
+	 </font><font size="-2"><font>116</font></font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><br><font></font><br><font></font><font size="-2"><font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Cube broken</font></font></font>
+	
+</div>
+
+ <img width="845" height="620" align="BOTTOM" border="0" src="./rt9_files/img100.png" alt="\ Includegraphics [height = 14cm] {} compose.eps">
+
+	<font size="-2"><font><font>117</font></font></font>
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Disturbances</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ For our objects, we have a set of characteristics
+
+ </font></font><br><font><font>
+fixed physical: color, gloss, transparency ... and many others.
+
+	   </font><font>
+	 
+ The form of our objects is designed mathematically flawless.
+
+	   </font><font>
+	 
+ If we created objects a little less perfect?
+
+	   </font><font>
+	 
+ &#8203;&#8203;Just for it to have simple functions that will
+
+ </font><font>
+disrupt the pretty unique properties. </font><font>According to the
+
+ </font><font>
+coordinates of a point on the object (our point </font><font>, for example),
+
+ </font><font>
+these functions will significantly alter the normal </font><font>in
+
+ </font><font>
+the point (and to a less smooth surface)
+
+ </font><font>
+transparency, color ...
+
+	   </font><font>
+	 
+ To minimize the calculations in our duties are applied
+
+ </font><font>
+in the single position of the object, so with the coordinates
+
+ </font><font>
+of single </font><font>, </font><font>etc ..
+
+	 </font><font size="-2"><font>118</font></font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt9_files/img7.png" alt="$ P $"><font></font><br><font></font><img width="38" height="36" align="BOTTOM" border="0" src="./rt9_files/img14.png" alt="$ \ Vec N $"><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt9_files/img7.png" alt="$ P $"><font></font><img width="38" height="36" align="BOTTOM" border="0" src="./rt9_files/img14.png" alt="$ \ Vec N $"><font></font><font size="-2"><font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Waves effect</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ See for example how to get a `` Wave World. ''
+
+	   </font><font>
+	 
+ We'll just tweak the
+
+ </font><font>
+normal of a point of a plan. </font><font>Gloss features
+
+ </font><font>
+and light create the visual effect.
+
+	   </font><font>
+	 
+ Parallel wave axis </font><font>:
+
+ </font><font>, </font><font>and </font><font>. remain unchanged
+
+	   </font><font>
+	 
+ perturbation functions make themselves part of
+
+ </font><font>
+. characteristics of an object
+
+	   </font><font>
+	 
+ It is for you to work your imagination to find
+
+ </font><font>
+functions that produce unparalleled visuals !!
+
+ </font><font>
+Some disturbances combined with appropriate textures
+
+ </font><font>
+give the effect of wood, granite, velvet (...) very realistic.
+
+	 </font><font size="-2"><font>119</font></font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><img width="27" height="31" align="BOTTOM" border="0" src="./rt9_files/img71.png" alt="$ X $"><font></font><br> 
+ <!-- MATH
+ $N_y = N_y + cos(\frac{y_P}{10})\times \frac{||\vec N||}{10}$
+ -->
+<img width="403" height="96" align="MIDDLE" border="0" src="./rt9_files/img72.png" alt="$ N_y N_y + = cos (\ frac {y_P} {10}) \ times \ frac {\ vert \ vert \ vec N \ vert \ vert} $ {10}"><font></font><img width="52" height="62" align="MIDDLE" border="0" src="./rt9_files/img73.png" alt="$ N_x"><font></font><img width="50" height="62" align="MIDDLE" border="0" src="./rt9_files/img74.png" alt="$ N_z"><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><font size="-2"><font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Colors and textures</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ If our perturbation functions can modify a normal one
+
+ </font></font><br><font><font>
+object at a given point, they can of course change the color.
+
+	   </font><font>
+	 
+ Let's create a `` checkerboard '' on a plan:
+
+ </font><font>
+it is tested whether </font><font>and when </font><font>, if these two conditions
+
+ </font><font>
+are true or false at the same time, we choose a color,
+
+ </font><font>
+if not, another.
+
+	   </font><font>
+	 
+ Our color disturbance function will also be able to perform
+
+ </font><font>
+simple calculations (Rule 3 ...) for starting
+
+ </font><font>
+of </font><font>coordinates </font><font>in texture,
+
+ </font><font>
+color and return the corresponding pixel in the texture.
+
+ </font><font>
+It was our object textured, managing the problems of zoom
+
+ </font><font>
+and `` textures that move. ''
+
+	 </font><font size="-2"><font>120</font></font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><img width="227" height="62" align="MIDDLE" border="0" src="./rt9_files/img75.png" alt="$ X_P \% 100&gt; $ 50"><font></font><img width="224" height="62" align="MIDDLE" border="0" src="./rt9_files/img76.png" alt="$ Y_P \% 100&gt; $ 50"><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><img width="188" height="62" align="MIDDLE" border="0" src="./rt9_files/img77.png" alt="$ (X_P, y_P, Z_p) $"><font></font><img width="123" height="62" align="MIDDLE" border="0" src="./rt9_files/img78.png" alt="$ (X_t, Y_T) $"><font></font><br><font></font><br><font></font><br><font></font><font size="-2"><font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Textures</font></font></font>
+	
+</div>
+
+ <img width="1000" height="633" align="BOTTOM" border="0" src="./rt9_files/img101.png" alt="\ Includegraphics [height = 14cm] {} texture.eps">
+
+	<font size="-2"><font><font>121</font></font></font>
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Still disturbances</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ The system disturbances can be applied to almost
+
+ </font></font><br><font><font>
+all parameters involved in the calculations
+
+ </font></font><br><font><font>
+post-intersection. </font><font>It is possible to change the
+
+ </font></font><br><font><font>
+transparency or reflection based on a formula.
+
+	   </font><font>
+	 
+ A texture can be used both as disturbance color
+
+ </font><font>
+and transparency of disturbance. </font><font>A drawing initially on
+
+ </font><font>
+white background can be found on a piece of textured plane
+
+ </font><font>
+but also allow the cut end of the plan is where
+
+ </font><font>
+the white color is.
+
+	   </font><font>
+	 
+ More delicate but still feasible, a disturbance of
+
+ </font><font>
+the boundary of an object, depending on the point of intersection.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>122</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Disturbances ++</font></font></font>
+	
+</div>
+
+ <img width="844" height="633" align="BOTTOM" border="0" src="./rt9_files/img102.png" alt="\ Includegraphics [height = 14cm] {} perturb.eps">
+
+	<font size="-2"><font><font>123</font></font></font>
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Ambient light</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ So far, the unexposed portions of the object
+
+ </font></font><br><font><font>
+light, so in the dark, were returned to the black screen.
+
+ </font></font><br><font><font>
+This pattern is somewhat lacking in realism. </font><font>The objects illuminated
+
+ </font></font><br><font><font>
+re-themselves emit some light (diffuse light).
+
+	   </font><font>
+	 
+ It would be unthinkable unfortunately to consider all
+
+ </font><font>
+points of objects illuminated in turn as the spots more
+
+ </font><font>
+low intensity.
+
+	   </font><font>
+	 
+ We define floodlight which will be added
+
+ </font><font> 
+ to all our points. </font><font>Thus, an object completely in the shade
+
+ </font><font>
+will be visible anyway.
+
+	   </font><font>
+	 
+ As always, feel free to incorporate this factor to your
+
+ </font><font>
+sauce. </font><font>And why not make disturbance functions
+
+ </font><font>
+of the ambient light ...
+
+ </font><font>
+A mere possibility of not lower </font><font>than
+
+ </font><font>
+the brightness below </font><font>for example.
+
+	 </font><font size="-2"><font>124</font></font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><img width="103" height="62" align="MIDDLE" border="0" src="./rt9_files/img19.png" alt="$ Cos (a) $"><font></font><br><font></font><img width="77" height="31" align="BOTTOM" border="0" src="./rt9_files/img79.png" alt="$ 0.10 USD"><font></font><font size="-2"><font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Parallel light</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ So far we have used point light sources
+
+ </font></font><br><font><font> 
+ (our spots). </font><font>The light is emitted in all directions.
+
+	   </font><font>
+	 
+ This specific aspect is not really consistent with what
+
+ </font><font>
+can be observed in reality. </font><font>It is possible to
+
+ </font><font>
+create a parallel light source. </font><font>It is not
+
+ </font><font>
+located at precise coordinates, but it has
+
+ </font><font>
+a vector indicant orientation.
+
+	   </font><font>
+	 
+ Specifically, the vector </font><font>(between the spot and the point </font><font>)
+
+ </font><font>
+to be parallel light away from the vector
+
+ </font><font>
+orientation of the light .
+
+	   </font><em><font>Note:</font></em><font> in this case, the shadow will
+
+ </font><font>
+consider ALL the objects in front of the point </font><font> 
+ (thus for all </font><font>) where a normal spot, only
+
+ </font><font>
+objects between </font><font>and </font><font>were interesting ( </font><font>).
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><img width="31" height="36" align="BOTTOM" border="0" src="./rt9_files/img15.png" alt="$ \ Vec L $"><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt9_files/img7.png" alt="$ P $"><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $">
+	 
+ <em><font></font></em><font></font><br><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt9_files/img7.png" alt="$ P $">
+
+<br><font></font><img width="91" height="62" align="MIDDLE" border="0" src="./rt9_files/img80.png" alt="$ K&gt; 0 $"><font></font><br><font></font><img width="34" height="30" align="BOTTOM" border="0" src="./rt9_files/img7.png" alt="$ P $"><font></font><img width="31" height="31" align="BOTTOM" border="0" src="./rt9_files/img2.png" alt="$ S $"><font></font><img width="156" height="62" align="MIDDLE" border="0" src="./rt9_files/img11.png" alt="$ 0 &lt;k &lt;$ 1"><font></font></p><p>
+
+	<font size="-2"><font><font>125</font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Negative objects</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ This is to </font></font><em><font><font>remove</font></font></em><font><font> one object to another. </font><font>It is a system
+
+ </font></font><br><font><font>
+cutting a form from another form. </font><font>The object
+
+ </font></font><br><font><font>
+is usually closed negative.
+
+ </font></font><br><font><font>
+There are two ways to achieve this effect:
+
+	   </font><font>
+	 
+ The first is to respond `` untouched object '' if
+
+ </font><font>
+the intersection point is inside the object
+
+ </font><font>
+negative. </font><font>This has the effect of leaving a hole in the shape
+
+ </font><font>
+original.
+
+	   </font><font>
+	 
+ The second makes a negative impression of the object, simulating
+
+ </font><font>
+a distortion of the original shape. </font><font>This is part
+
+ </font><font>
+of the negative object that will serve as a modified surface on
+
+ </font><font>
+the initial object.
+
+	 </font><font size="-2"><font>126</font></font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><font size="-2"><font></font></font>
+
+</p><p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Items - -</font></font></font>
+	
+</div>
+
+ <img width="905" height="368" align="BOTTOM" border="0" src="./rt9_files/img103.png" alt="\ Includegraphics [width = 20cm] {} negatif.eps">
+
+	<font size="-2"><font><font>127</font></font></font>
+
+<p>
+
+	</p><div align="CENTER">
+<font size="+2"><font><font>Possible negative technique</font></font></font>
+	
+</div>
+
+<p>
+
+	  <br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font><font>
+	 
+ There are of course several techniques to make this device
+
+ </font></font><br><font><font>
+negative objects. </font><font>One presented here tries to be as
+
+ </font></font><br><font><font>
+close to the architecture of the raytracer view until now.
+
+ </font></font><br><font><font>
+This is the first of two proposed solutions.
+
+	   </font><font>
+	 
+ The negative object is initially regarded
+
+ </font><font>
+as a normal object. </font><font>It performs the intersection calculations
+
+ </font><font>
+conventional manner.
+
+	   </font><font>
+	 
+ It will however be necessary to retain all of the intersections
+
+ </font><font>
+of a radius. </font><font>Indeed, if our nearest intersection is
+
+ </font><font>
+a negative object, you can not keep it. </font><font>Must classify
+
+ </font><font>
+the intersections and select the first matching
+
+ </font><font> 
+ a vector object in overall negative object.
+
+</font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><img width="25" height="29" align="BOTTOM" border="0" src="./rt9_files/img1.png" alt="$ \ Bullet $"><font></font><br><font></font><br><font></font><br><font></font><br><font></font></p><p>
+
+	<font size="-2"><font><font>128</font></font></font>
+
+</p><p>
+<br></p><hr><font><font>
+Ol - IGRAPH tek1 - January 22, 2002 - Converted by LaTeX2HTML </font></font><br><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./rt9_files/translate-32.png" width="20" height="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div>
+
+
+</body></html>
